@@ -1,0 +1,381 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="covid19_template_stylesheet.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="lab-banner">
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="text-align: center;">
+                            <div class="middle-component">
+                                <div class="mid-comp-holder">
+                                    <div class="header-text-row-1">
+                                        <p class="text-center mv-0 mb-3 h2">BIOLOGIX</p>
+                                    </div>
+                                    <div class="header-text-row-2">
+                                        <p class="text-center red mv-0 mb-3 h6">
+                                            A MEMBER OF THE LAGOS COVID-19 LABORATORY CONSORTIUM<br />
+                                            LAGOS STATE<br />
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="text-center calibri dark-blue mv-0 h4">LABORATORY INVESTIGATION RESULT
+                                            PAGE
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="text-align: left;">
+                            <div class="right-component">
+                                <div class="right-logo">
+                                    <img height="50" src="{{LAB_IMAGE}}" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td colspan="3">
+                            <div class="doc-number">
+                                <p class="nsimsun mv-0 h5">Nọ {{DOCUMENT_NUMBER}}</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </header>
+        <main>
+            <div class="title-component mt-3">
+                <div class="text-center">
+                    <span class="pb-1 border-bottom-1 h5 title comic-sans">
+                        VIROLOGICAL SCREENING TEST FOR COVID-19 OUTBREAK
+                    </span>
+                </div>
+            </div>
+            <div class="data-component mt-3">
+                <div class="date-component">
+                    <span class="date">
+                        <span class="date-title h5"> Date: </span>
+                        <span class="date-content h5 no-bold border-bottom-1"> {{DATE_ISSUED}} </span>
+                    </span>
+                </div>
+                <div class="details-component">
+                    <div class="details-component-holder p-2 mt-1">
+                        <table style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <th class="dc-left" style="vertical-align: top;">
+                                        <table style="width: 100%;">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="w-66">
+                                                        <table class="table-l">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td colspan="2" class="pt-0 pb-2">
+                                                                        <span class="h5 pr-1">NAME:</span>
+                                                                        <span
+                                                                            class="h5 pr-1 no-bold">{{PATIENT_NAME}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="pv-2">
+                                                                        <span class="h5 pr-1">D.O.B:</span>
+                                                                        <span class="mb-1 h5 no-bold">{{PATIENT_DOB}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="pv-2">
+                                                                        <span class="h5 pr-1">SEX:</span>
+                                                                        <span class="mb-1 h5 no-bold">{{PATIENT_SEX}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2" class=" pv-2">
+                                                                        <span class="h5 pr-1">ADDRESS:</span>
+                                                                        <span
+                                                                            class="h5 pr-1 no-bold">{{PATIENT_ADDRESS}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2" class="pv-2">
+                                                                        <span class="h5 pr-1">PHONE NO.:</span>
+                                                                        <span
+                                                                            class="h5 pr-1 no-bold">{{PATIENT_PHONE}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td style="vertical-align: text-top;">
+                                                        <table>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="pb-2">
+                                                                        <p class="mb-1 h5">SAMPLE <br />COLLECTED ON:</p>
+                                                                        <span class="mb-1 h5 no-bold">{{SAMPLE_COLLECTION_DATE}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="pb-2">
+                                                                        <p class="mb-1 h5">TIME:</p>
+                                                                        <span class="mb-1 h5 no-bold">{{SAMPLE_COLLECTION_TIME}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="pb-2">
+                                                                        <p class="mb-1 h5">PASSPORT NO.:</p>
+                                                                        <span class="mb-1 h5 no-bold">{{PASSPORT_NUMBER}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table class="table-l">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td colspan="2" class="pv-2">
+                                                                        <span class="h5 pr-1">EMAIL:</span>
+                                                                        <span
+                                                                            class="h5 pr-1 no-bold">{{PATIENT_EMAIL}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2" class="pt-2">
+                                                                        <span class="h5 pr-1">NATIONALITY:</span>
+                                                                        <span
+                                                                            class="h5 pr-1 no-bold">{{PATIENT_NATIONALITY}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </td>
+                                    <th class="dc-right" style="vertical-align: top;">
+                                        <table class="table-l">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="h5">SAMPLE(S): SCREENING/REPEAT/FOLLOW</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="">
+                                                        <table class="table-l row-bordered">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>1.</td>
+                                                                    <td colspan="2">NASOPHARYNGEAL</td>
+                                                                    <td style="text-align: right;">{{NASOPHARYNGEAL}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>2.</td>
+                                                                    <td colspan="2">OROPHARYNGEAL</td>
+                                                                    <td style="text-align: right;">{{OROPHARYNGEAL}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>3.</td>
+                                                                    <td colspan="2">SPUTUM</td>
+                                                                    <td style="text-align: right;">{{SPUTUM}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>4.</td>
+                                                                    <td colspan="2">BLOOD</td>
+                                                                    <td style="text-align: right;"> {{BLOOD}} </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>5.</td>
+                                                                    <td colspan="2">OTHERS</td>
+                                                                    <td style="text-align: right;" class="h6 no-bold">
+                                                                        {{OTHER_SAMPLES}} </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pt-5">
+                                                        <span class="h5 pr-1">DATE OF RESULT:</span>
+                                                        <span class="h5 pr-1 no-bold">{{DATE_OF_RESULT}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pt-3">
+                                                        <table class="table-l end-result-table">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="p-1"><span class="h4">POSITIVE</span>
+                                                                    </td>
+                                                                    <td><span class="h4"> {{RESULT_POSITIVE}} </span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="p-1"><span class="h4">NEGATIVE</span>
+                                                                    </td>
+                                                                    <td><span class="h4"> {{RESULT_NEGATIVE}} </span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="test-result-component mt-5">
+                <span class="h5">RESULT:</span>
+                <div class="test-result">
+                    <table class="table-l col-bordered light-gray-border">
+                        <thead>
+                            <tr>
+                                <td class="pl-1"><span class="h6 italic">S/N</span></td>
+                                <td class="pl-1"><span class="h6 italic">TEST DONE</span></td>
+                                <td class="pl-1"><span class="h6 italic">LAB CODE(SPECIMEN USED)</span></td>
+                                <td class="pl-1"><span class="h6 italic">REFERENCE <br /> RANGE</span></td>
+                                <td class="pl-1"><span class="h6 italic">TEST VALUE</span></td>
+                                <td class="pl-1"><span class="h6 italic">COMMENT</span></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">1</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">RT-PCR FOR SARS-COV2</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{RESULT_LABCODE}}</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{RESULT_SIGN}} CUT OFF</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{TEST_VALUE}}</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{RESULT_COMMENT}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-2"></td>
+                                <td class="pl-1 pv-2"></td>
+                                <td class="pl-1 pv-2"></td>
+                                <td class="pl-1 pv-2"></td>
+                                <td class="pl-1 pv-2"></td>
+                                <td class="pl-1 pv-2"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="general-comment-component p-3 pt-5 pb-5 mt-5">
+                <span class="p-2 pt-1 pb-1 h6 bg-white title">General Comment</span>
+                <div class="pb-3 pt-2">
+                    <span class="pr-2 h5"> {{RESULT_COMMENT}} FOR SARS COV 2 (COVID-19) AS AT:</span>
+                    <span class="pl-2 pr-2 h5 no-bold border-bottom-1">{{DATE_OF_RESULT}}</span>
+                </div>
+            </div>
+            <div class="signatures-component pb-1">
+                <table class="table-l">
+                    <tbody>
+                        <tr>
+                            <td class="w-33">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="pl-1" style="vertical-align: top;">
+                                                <span class="h6">Signature:</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-1" style="vertical-align: bottom;">
+                                                <img height="50px" src="data:image/jpeg;base64,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" /> </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="pl-1">
+                                                <span class="h6 pr-1">Name:</span>
+                                                <span class="h6 pr-1 no-bold">DR. EMUEJEVOKE TOYE</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="pl-1">
+                                                <span class="h6 pr-1">Designation:</span>
+                                                <span class="h6 pr-1 no-bold">Managing Director</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="w-33">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="pl-1" style="vertical-align: top;">
+                                                <span class="h6">Signature:</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-1" style="vertical-align: bottom;">
+                                                <img height="50px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGwAAABPCAMAAAA5gNBnAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAAAAAKVnuc8AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAXEQAAFxEByibzPwAAAqtJREFUaEPtUtly5EAMyvz/T68OpIZO+8iMxw9bpmrdCJBItvLzuhHny35+Pv7BnrLby0Dex+kLF/xiT9lTto+n7NYy63rKtnHygnc9Zds4d8GbbizLfx/i1IX4L7y57OO2k2XxuaUsa24ry+8dZWj5L8rs7rjc9AtlUZRooUi+70MPZMlAamFdXdYN+QTF13FpWVYo44qhvQs+Vcec1NDilWV2iWh8aQhcVkZdXTa+CeYrHNiGDNidToLmwwXMVziwDRlY3YxHDhxcO7ANEVj+/P7qL3Nw7cA2eMBOjlxTF79TloNhcGNsGK4ok5ODf79s4ro+z4p9N2ABDm2VBbugTELKxxTs4jJZUCM+e+dOloEaJP9r+/MyyeyXqT3jr2WaPy7zZd4G2cQUp7w4iUnwhGyDGMU7YStepwyYDfPgwGQoPmR2HZwnipUEFA2IEcjZ9bLqLfBf4/Ai75gWJEt6IATXyxos4MMQmnkokENoAfBhMkxJYyMVQ0vtuGJD6hlpI78kCFWMxUQtByfHpZTdTZYq5xNEFbVQkC0ycCI+ZLVSsgJempnHYiB5mIEYKxTfkMsIksICaWUSkLF5pHfQqTlautP4CGQmHvk1xg4EA/ik+pzfBPOpDM8MFyNC7pjyKQ41iIGoDXgNEgGpExBicsTkwAyQOCiYgekq4XsLwDVASEBbn7IBr2GZMMooAa4hZzjQiLOoZU1kywb/0vrw5wFsUNJswGtoWZec84pLlBzGtDcRh2RnElkfdKUmJ6RzrJkkmC58cN5wrQGp0Mpv4mDafr4OZFlyDYBAKLU9STFNrnZwvesHHRgV8MptEiAOYzqcX9VknODuCAzmIJ6G2olJWkUIZrevUeHmHBwKnMkAu2Xn7pwum87pcK7rPPbKroee/3IZ4/X6BwmTG8xIP0nRAAAAAElFTkSuQmCC" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="pl-1">
+                                                <span class="h6 pr-1">Name:</span>
+                                                <span class="h6 pr-1 no-bold">GIFT ERUSE</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="pl-1">
+                                                <span class="h6 pr-1">Designation:</span>
+                                                <span class="h6 pr-1 no-bold">Laboratory Manager</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="w-33">
+                                {{QR_CODE}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-content pv-3 text-center">
+                <p class="h6 mt-0 mb-0">
+                    <span class="pr-1">Address:</span>
+                    <span class="h6">56C Olorunlogbon street, Anthony Village, Lagos, Nigeria</span>
+                </p>
+                <p class="mv-0 pt-1">
+                    <span class="pr-1">
+                        <span class="pr-1 h6">Phone:</span>
+                        <span class="h6"><a href="tel:08053072221">0805 3072 221</a></span>,
+                        <span class="h6"><a href="tel:08069583073">0806 9583 073</a></span>
+                    </span>
+                    <span class="pr-1">
+                        <span class="pr-1 h6">Email:</span>
+                        <span class="h6"><a
+                                href="mailto:info@biologix.com.ng">info@biologix.com.ng</a></span>
+                    </span>
+                    <span class="pr-1">
+                        <span class="pr-1 h6">Website:</span>
+                        <span class="h6"><a href="https://biologix.com.ng">biologix.com.ng</a></span>
+                    </span>
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

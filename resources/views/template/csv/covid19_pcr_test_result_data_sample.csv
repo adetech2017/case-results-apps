@@ -1,0 +1,3 @@
+PATIENT_NAME,PATIENT_DOB,PATIENT_SEX,PATIENT_PHONE,PATIENT_EMAIL,PATIENT_NATIONALITY,PATIENT_ADDRESS,NASOPHARYNGEAL (Y/N),OROPHARYNGEAL (Y/N),SPUTUM (Y/N),BLOOD (Y/N),OTHER_SAMPLES,LAB CODE,RESULT (P/N),RESULT_DATE,SAMPLE_COLLECTION_DATE,SAMPLE_COLLECTION_TIME,PASSPORT_NUMBER,PATIENT_LOCATION
+Omo Thompson,dd/mm/yyyy,Male,,simple@email.com,Nigerian,10 Simpson; Street,Y,y,y,n,LUNGS;LIVER,seweew,p,dd/mm/yyyy,dd/mm/yyyy,2:19,A0000000,Abuja
+Omo Thompson,dd/mm/yyyy,Male,,simple@email.com,Nigerian,10 Simpson; Street,Y,y,y,n,,seweew,p,dd/mm/yyyy,dd/mm/yyyy,3:20,A0000000,Lagos

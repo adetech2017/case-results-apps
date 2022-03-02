@@ -1,0 +1,3 @@
+PATIENT_NAME,PATIENT_EMAIL,PATIENT_DOB,PATIENT_SEX,PATIENT_NATIONALITY,PASSPORT_NUMBER,LAB_CODE,COLLECTION_DATE,COLLECTION_TIME,RESULT_DATE,FINAL_RESULT,SAMPLE_TYPE,PATIENT_LOCATION
+Omo Thompson,info@example.com,dd/mm/yyyy,Male,Nigerian,A02000011,YHL-9009,dd/mm/yyyy,2:22,dd/mm/yyyy,P,x_type,Abuja
+Omo Thompson,info@example.com,dd/mm/yyyy,Male,Nigerian,A02000011,YHL-9019,dd/mm/yyyy,2:29,dd/mm/yyyy,N,y_type,Lagos

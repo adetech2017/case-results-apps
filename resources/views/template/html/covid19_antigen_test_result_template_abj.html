@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="covid19_template_stylesheet.css" />
+    <style>
+        body:before{
+    content: 'CodeHasBug';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    color: #0d745e;
+    font-size: 100px;
+    font-weight: 500px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    opacity: 0.2;
+    transform: rotate(-45deg);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <table style="width: 100%;">
+                <tr>
+                    <td style="text-align: left; width: 60%;">
+                        <p class="nsimsun mv-0 h5">Nọ {{DOCUMENT_NUMBER}}</p>
+                    </td>
+                    <td>
+                        <img height="50px" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABgREhUSDxgVFBUbGhgdJDwnJCEhJEo1OCw8WE1cW1ZNVVNhbYt2YWeDaFNVeaV6g4+UnJ2cXnSrt6mXtYuZnJX/2wBDARobGyQgJEcnJ0eVZFVklZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZX/wAARCABoAPwDASIAAhEBAxEB/8QAGgABAAMBAQEAAAAAAAAAAAAAAAMEBQIGAf/EAEMQAAEDAgMEBQkFBgUFAAAAAAEAAgMEEQUSIRMxQZEUIlFhoRUjUnGxwdHh8CQyQlOBBlRVYqLxMzRyc5I1Q0Rjgv/EABgBAQEBAQEAAAAAAAAAAAAAAAABAgME/8QALhEAAgIABAQEBgIDAAAAAAAAAAECEQMSITEiMkGhE1FScQQzQmGB8CPhkbHB/9oADAMBAAIRAxEAPwD1SIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCwsadssSp5SLhrQeTlurF/aFhGwkHC4vysu/w3zEjljchJ5eh/Il8E8vQ/kS+C1I3iSJkg3OaCP1XSmbD9PcuWfq7GT5eh/Il8E8vQ/kS+C1kTPh+nuMs/V2PN1tY2vrKcsY5tiBZ3rXpFh1Z2/7QwsH4C0custxbx6yxS8jOFdysq1VaKWoiY8DZyXu70SrSyMe3wf/AF7lpUri+lhcd5Y0nkvL1OierRKiIqaCLiaUQwvlduaL+tU6TFI6mYRGNzHO3a3BQjaWhfREQoREQBEVetqhRxNkLC8F2WwNkDdEsTnvjDpIzG656pIPHuXaipqhlVCJI72OhB3gqVAEREAREQBERAEREAREQBUMZh2uHvIGsZD/AI+C5lxeOKofGYnENNi4H3K/1ZY/SY8cwVqEssk0YdSTRg4fDV1UF4q1zAw5clzorXk7EP4g7mVTpJThWJSRSk7I6E93ArV8r0P5/wDQ74L14rxFK4K0/scIKFcT19yt5OxD+IO5lfHUFexpc7ESGtFybnQK15Xofz/6HfBUsVxSGWl2VM/MXnrGxFh+qzHxZNJrsal4aV33IcDY6eufO8lxY3ed9z8rr0CpYRTdGom5hZ8nWd7ldXLHnmm6OmFHLExcdd56JvY0n65LXgbkgjZ6LQPBYmK+dxMR9zWc/wC6t1+ISNlNPSAukH3iBcjuAXnCaTbNNF5+LEquCXzrnOAPWY8WPyW9HI2WNsjDdrhcKp2ajJMSRtljdG8Xa4WIVSnwuGmnErXPJF7BxFvYpMQc5lDK5ji1wGhBsd6qYPUyzGSOV5eGgEE706htXTNREWTVV5mkeyOQxwR/fkbvPcFSt0ayLJDsSniBgbsogOqCes4esr5Q4lKKgQVWtzlBIsQewqWZzo11nY3/AJNn+4PYVorLx13mYW9rifD5o9iz5TrAx9kf/uH2BaSpYQ3Lh7D6RJ8VdRbCOyCIqNfWuie2np7Gd/E7mqlbovIseGWrla6OjLni/WnkO8919wUfTa2iqMtSc43kG2o7QVLM50biL4x7ZGNe03a4XBX0mwudypsIsqpxc59nSMzm9sxF7nuCs0jK7MH1Uzcv5YaPapZnMm9C1tGbQR5hnIzZeNu1dLIwqQz19RM7e4chf5LXRFi7VlGfCaeaV0hc9pcbkNItdXmgNaGgWAFgsKKrnjxQs2rnMMxZlcbi17LdREi09jLxui20InjHXjGo7W/JQYO6lqI9jLBEZWjQlg6w+K2153EqN9BUtqKe7Yybgj8B7PUvZhSzx8Nv2OOJHLLOvyatVFQ0sDpZKeKw3DINT2LIw2l6dWmV7Gtiaczg0WHcAuJZ6jF6qOMNA00aNw7SV6Klp2UsDYo9w3ntParJvBhTfE+xEliStbIlREXjPSecqZsuKSSnXJJfl/ZbOH0vRoAXayv6zyd9+xYtMzpGJtB3OkLj7V6RZRzgr1MnHYxaKW2ty0+1WMGcXUAB/C4ge33qtjsgvDHx1cfrmrWEsyUDCd7iXeKdQuc6xV2XDpe+w8QquBM83M/tIby/upMbdajaPSePYV3g7ctAD6Tifd7leo+skxKYwUUhabOd1R+qy8KpxUSWcLxxnMR2nh71cxw/ZYx/7PcV9wRoFG53EvPuU6h6zNFefxduzr3OboS0O/X6C9AsDFfPYkY277NYPX9FVlxNjeabtB7QsfHXXlhZ2NJ5/wBlsjQWWBjLs1cR6LAPf70ewxOU2KFuShgH8gPNTr4xuRjWjgLL6qbR8c4NaXHcBcrzcJfV1hF7PmJBPog7/DRb9ZpRT2/Ld7FkYI0GscTwYbcwoznPVpG3HG2KNsbBZrRYBZuOsBhifxDrcx8lqLLx14EUUfEuLuQ+aPY1PlJ8JcXYey/AkeKgxmqLGCnYbF4u71dis4Wwsw+K+8gu5lY2IEy4jKP5g0exR7GZOoo0cHpAyIVDx13/AHe4fNXqt+zpJndjD7FI1oa0NaLACwCoYzKGUezvrIbfoNVdka5YlbAh52b/AEj3rZWRgQ1nP+ke1asjskbneiCUWxIcpgUY22Lg8DI53tK9CsLBG3q3OP4We8LdRDD2C8/itc6rmFLT3cwOtp+N3wV7Ga3o8GxjNpJBv7Aq+DQQQs6RNJGJHDqguHVHxXrwoqEfEf4OeJLM8i/JScypwirY821HDc4cQvR087KmFssZu13h3KCsFLV07onzRji05hoe1ZGF1TqKsMErhs3mxsbgHgVqS8aF1xIyv45V0Z6JEReM9JhYczZ4uWHe0uC25HtiY573BrWi5JUD6NprWVTDleNHD0hay+VNC2qcNpNLkH4AQB7FFoYSaRjkSYnXkgEA/wBLV6FrQxga0Wa0WAXEFPFTMyRMDRx7SpESLGNGZjgJpozwD9eRVnDBbDofUfaVPPCyohdFILtcuaWDo9O2LNmy31tbinUVxWQYrCZqJ2UXcw5gPb4Ktgc7dm+AnrXzDvC1Vm1GEMfJtIJNk697W0v3diEad2i7U1DKaEyPO7cOJPYsjC4H1NY6pk1DSTftcfr2KwzBy94dU1DpO4fErSjjZEwMjaGtG4BNxTbtnS89iP8A1R+bQXbysF6E3sbb1mHB2vcXy1Ej3nUmwCMTTa0LZr6Qf+RHzXDsUo2/96/qaSqxwSP8Mzx6wCuW4GMwzVBLeIDLH2pqLn5F+OVlbSuLQ4MeC3Ub+CxsNf0TEMkvVvdhvwK3WtjghDRZkbBxOgCrVmHxVlng5H2+8NbjvRoNPR9S25wa0ucQANSTwWDM52J4iGx3ybgexvE/XcrPkiZwDZKslg3DU+9aFNSxUrMsTd+9x3lNw05bkrWhrQ1osALALzuJRuir5OFzmB+u9ejVasoo6xoz3a5u5wRos42jiPE6V0Ie6UNNtWneCs2re6rikq3AtjBDIgfXqfr3K1FgsbX3llL2+iBlumNFsdJFE0ADNoB2AfNTUw7rU+4G21PI7tfbkPmr9Q0uppWt3lhA5KDC49nQRXGrutz+StqrY3FcJjYD/iTH+VvvWySGgkmwGpKrU9EymqJJIzZsg1b2HuUWMTbHDn2Or+oP13+F1qEczUSckdTKgjOLYm9777IanuHAfXetLyJR+i//AJLPw2qlo4CGUUkmc3zi+o4cFc8rVH8Ol5n4L24ixc1Q0S+5whkq5bknkSj9F/8AyVPE8Kip6bbU4d1T1gTfRWPK1R/DpeZ+C5fic8kbmOw2UtcCCLndyWY+Mmm33RqXhNV/wt4VU9KomucbvZ1XevtVxYGBSOirJIHgtzt3HfcfRW+uOPDJNpHTClmiQ1lR0amdKADYga7hc2uVF0iZkNS6RrTsm5mPAIa/S6kqhKWM2bA9ubzjNOs3s10VVlHN0KphaDG199lG51y0dl0io5dRJu9Cbpbi+jAYPtAJIvqNLp0uR088EcYfJG4W1sLEA3JXEdPO6opp5GtbkBaWB18ot9eC5gMhNZJAwOldMWAk2AsALnxVyx6fupLf77HXlD7HHUloaDIGvBN8utipG1cnSo4pIMjZQSw5rnTXUcFBLTCCmo6a+bzwzE8d5KnbDJLWiolGRkYLY2XubneSjUKv3/oJy/0cGrmkE76eNhjiJF3E9Yjfb6+XT62zKZ7WZhONG8b2uPgomw1EVPLSxxiz3Oyy5hYA9o33UjqVwqKLILxQBwNz3WCNQv8AfIcRXqKipkpmtMTWuMwYHBxAuHC1tO5aUecsG0DQ7iGm4UNXE6SSmIF2slDncj71YWJyTSpGoppuykauZ0soiY1wieGFmuY349w+C7mqnCWSOLINk3M979w7Aq7oKiSaN7oss7JNZgQGll91t507Qun0rm1cz3UzZ2S2LSSOqQLa39y6VAxcjvpx2NLJs/8AG0y8b2uLfXFcx1s+2iZLE1rXyPjJF943EePJSywSvqqR5DS2PMX20F7aWCV8UskUZgAMkcgcAd31qsrJoq3/ALLxbkdVU/ZqtxjY+OM5Rm1Djpcc1LJMY3xU0LG7Rzb2O5jR9WXyelJoOjx62ynX8WoJ/U6r5LHLHXtqY4zI0x7MtBAI1vfVFla/yV5kfG1zhSmR8d37TZsA0Dzewt3IyrkbNPFK1rjEzOTHfl60q4Jp4InFjHSRyB5YDoRrpc9y+hkzaaXo0EcDiOo3S9+JNtEqNE4rFLUzTGNzmsMcjC67L9Q9hPH5KnS1tRWYgGtkyQ6nKANwVqlgeysfI2Iwwub1mEjV194AJ4LPfR1VBU7SnYXtH3SBfTsIXPFq9BxUjdWHXO6fiTIIzdrerceJ+uxSuqMSqm7NlOYr73WI8SreH0DaNhJIdK4akbh3BY3NPi0LjQGtDQLACwCIipsLF/aJ5tBGOJJtyW0sLGxtMRp4r2zNAv2XK7/DfMTOWNyG3FGIoWRjcxobyXSyfI0v7/LyPxTyNL+/y8j8VMkH9XZlzS9JrIsnyNL+/wAvI/FPI0v7/LyPxTJh+rsxmn6SCqGw/aGJ4/GWnn1VurzdZSuoq2nzTOlJIN3cNV6Rbx6qLXkZwruVhEReY7BRU9OKfaZXEiSQv14XRFbexKPk9OJnxPLiDE7MLcVMiJbegoIiKFCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAuXRsc4OcxpcNxI1CIgOkREAREQHLo2PIL2NcRuJF10iID//Z" />
+                        <br />
+                        <h4>Head-Office</h4>
+                        <span class="mb-0 mt-0 h4">BIOLOGIX</span>
+                        <p class="mb-0 mt-0">56C Olorunlogbon street,</p>
+                        <p class="mb-0 mt-0">Anthony Village, Lagos.</p>
+                        <p class="mb-0 mt-0">[For COVID-19 Appointments]</p>
+                        <p class="mb-0 mt-0">Tel: 0805 3072 221, 0806 9583 073</p>
+                        <p class="mb-0 mt-0"><a href="https://biologix.com.ng">biologix.com.ng</a></p>
+                        <h4>Abuja Office</h4>
+                        <p class="mb-0 mt-0">17, 4th Avenue Gwarinpa, Abuja</p>
+                    </td>
+                </tr>
+            </table>
+        </header>
+        <main>
+            <div class="date-component">
+                <span class="date">
+                    <span class="date-title h5"> Date: </span>
+                    <span class="date-content h5 no-bold border-bottom-1"> {{DATE_ISSUED}} </span>
+                </span>
+            </div>
+            <div class="title-component mt-3">
+                <div class="text-center">
+                    <span class="pb-1 border-bottom-1 h4 title">
+                        SARS-COV2 (COVID-19) ANTIGEN RAPID TEST REPORT
+                    </span>
+                </div>
+            </div>
+            <div class="data-component mt-5">
+                <span>NAME: {{PATIENT_NAME}}</span><br />
+                <span>D.O.B: {{PATIENT_DOB}}</span><br />
+                <span>GENDER: {{PATIENT_SEX}}</span><br />
+                <span>EMAIL: {{PATIENT_EMAIL}}</span><br />
+                <span>NATIONALITY: {{PATIENT_NATIONALITY}}</span><br />
+                <span>PASSPORT NO.: {{PASSPORT_NUMBER}}</span><br />
+                <span>LAB CODE: {{RESULT_LABCODE}}</span><br />
+                <span>SAMPLE TYPE: {{SAMPLE_TYPE}}</span><br />
+                <span>SAMPLE COLLECTION DATE: {{SAMPLE_COLLECTION_DATE}}</span><br />
+                <span>SAMPLE COLLECTION TIME: {{SAMPLE_COLLECTION_TIME}}</span>
+            </div>
+            <div class="test-result-component mt-3">
+                <div class="test-result">
+                    <table class="table-l col-bordered light-gray-border">
+                        <thead>
+                            <tr>
+                                <td class="pl-1 pv-2"><span class="h4">SARS-COV 2 (COVID-19) ANTIGEN</span></td>
+                                <td class="pl-1 pv-2"><span class="h4">RESULT</span></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="pl-1 pv-2">
+                                    <span>SARS-COV 2 (COVID-19) Ag</span>
+                                </td>
+                                <td class="pl-1 pv-2">{{FINAL_RESULT}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="signatures-component mt-5 pb-1">
+                <table class="table-l">
+                    <tbody>
+                        <tr>
+                            <td class="w-50">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2" class="pl-1">
+                                                <span class="h6 pr-1">GIFT ERUSE</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pl-1" style="vertical-align: bottom;">
+                                                <img height="50px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGwAAABPCAMAAAA5gNBnAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAAAAAKVnuc8AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAXEQAAFxEByibzPwAAAqtJREFUaEPtUtly5EAMyvz/T68OpIZO+8iMxw9bpmrdCJBItvLzuhHny35+Pv7BnrLby0Dex+kLF/xiT9lTto+n7NYy63rKtnHygnc9Zds4d8GbbizLfx/i1IX4L7y57OO2k2XxuaUsa24ry+8dZWj5L8rs7rjc9AtlUZRooUi+70MPZMlAamFdXdYN+QTF13FpWVYo44qhvQs+Vcec1NDilWV2iWh8aQhcVkZdXTa+CeYrHNiGDNidToLmwwXMVziwDRlY3YxHDhxcO7ANEVj+/P7qL3Nw7cA2eMBOjlxTF79TloNhcGNsGK4ok5ODf79s4ro+z4p9N2ABDm2VBbugTELKxxTs4jJZUCM+e+dOloEaJP9r+/MyyeyXqT3jr2WaPy7zZd4G2cQUp7w4iUnwhGyDGMU7YStepwyYDfPgwGQoPmR2HZwnipUEFA2IEcjZ9bLqLfBf4/Ai75gWJEt6IATXyxos4MMQmnkokENoAfBhMkxJYyMVQ0vtuGJD6hlpI78kCFWMxUQtByfHpZTdTZYq5xNEFbVQkC0ycCI+ZLVSsgJempnHYiB5mIEYKxTfkMsIksICaWUSkLF5pHfQqTlautP4CGQmHvk1xg4EA/ik+pzfBPOpDM8MFyNC7pjyKQ41iIGoDXgNEgGpExBicsTkwAyQOCiYgekq4XsLwDVASEBbn7IBr2GZMMooAa4hZzjQiLOoZU1kywb/0vrw5wFsUNJswGtoWZec84pLlBzGtDcRh2RnElkfdKUmJ6RzrJkkmC58cN5wrQGp0Mpv4mDafr4OZFlyDYBAKLU9STFNrnZwvesHHRgV8MptEiAOYzqcX9VknODuCAzmIJ6G2olJWkUIZrevUeHmHBwKnMkAu2Xn7pwum87pcK7rPPbKroee/3IZ4/X6BwmTG8xIP0nRAAAAAElFTkSuQmCC" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="pl-1">
+                                                <span class="h6 pr-1 no-bold">LABORATORY MANAGER</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="w-50">
+                                {{QR_CODE}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

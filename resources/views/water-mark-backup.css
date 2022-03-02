@@ -1,0 +1,60 @@
+body:before{
+            content: 'Confidential';
+            position: fixed;
+            top: 100;
+            bottom: 0;
+            left: 165;
+            right: 0;
+            z-index: -1;
+
+            color: #0d745e;
+            font-size: 120px;
+            font-weight: 500px;
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            transform: rotate(-45deg);
+            opacity: 0.1;
+            align-items: center;
+        }
+
+
+
+
+
+.container:before
+        {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: url();
+            background-size: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            z-index: 2;
+
+            color: #0d745e;
+            font-size: 120px;
+            font-weight: 500px;
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            transform: rotate(-45deg);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
