@@ -50,7 +50,7 @@ class TestResultImport implements ToModel, WithHeadingRow
             'sample_collection_time' => Crypt::encryptString($row['sample_collection_time']),
             'passport_number' => Crypt::encryptString($row['passport_number']),
             'patient_location' => $row['patient_location'],
-            'document_number' => TestHelper::IDGenerator(new TestResult(), 'document_number', 6, 'BIX-'),
+            'document_number' => TestHelper::IDGenerator(new TestResult(), 'document_number', 6),
             'patient_type' => $row['patient_type'],
             'result_timer' => Carbon::createFromFormat('m/d/Y H:i', $row['sample_collection_date'].$row['sample_collection_time'])->format('Y-m-d H:i')
         ]);
