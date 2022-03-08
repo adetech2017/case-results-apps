@@ -13,6 +13,7 @@ class AntigenTestResult extends Model
 
     protected $fillable = [
         'patient_name',
+        'case_uid',
         'patient_sex',
         'patient_dob',
         'patient_phone',
@@ -26,5 +27,6 @@ class AntigenTestResult extends Model
         'final_result',
         'sample_type',
         'patient_location',
+        'document_number',
     ];
 }

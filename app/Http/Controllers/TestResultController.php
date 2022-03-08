@@ -103,7 +103,7 @@ class TestResultController extends Controller
         elseif($request->test_result_id === '1')
         {
             Excel::import(new AntigenTestResultImport, $request->file('file')->store('temp'));
-            return back()->with('status', 'File upload successfully!');
+            return back()->with('status', 'File upload successfully!, mail sent.');
         }
         else
         {
@@ -182,19 +182,6 @@ class TestResultController extends Controller
 
         return $pdf->download($result->patient_name.'.pdf');
     }
-
-
-    /**
-     * Edit single officer record in database
-     *
-     */
-    public function single_test_result($document_number)
-    {
-
-        return view('verification')
-            ->with('test_result', TestResult::where('document_number', $document_number)->first());
-    }
-
 
     public function downloadPcr()
     {
@@ -292,7 +279,7 @@ class TestResultController extends Controller
     }
 
     /**
-     * test demo send mail to multiple users
+     * send mail to multiple users
      */
     public function multi_mail(Request $request)
     {
@@ -347,9 +334,7 @@ class TestResultController extends Controller
 
     }
 
-    /**
-     * method for sending multiple mail
-     */
+
     public function send_multi_mail(Request $request)
     {
         $patients = TestResult::whereIn('id', $request->ids)->get();
@@ -363,5 +348,17 @@ class TestResultController extends Controller
         }
 
         return response()->json(['done']);
+    }
+    
+    
+    /**
+     * Edit single officer record in database
+     *
+     */
+    public function single_test_result($document_number)
+    {
+
+        return view('verification')
+            ->with('test_result', TestResult::where('document_number', $document_number)->first());
     }
 }

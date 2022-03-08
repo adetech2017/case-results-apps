@@ -80,6 +80,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Case Result:</h6>
                         <a class="collapse-item" href="{{ url('upload-new-case')}}">Upload Result</a>
+                        <a class="collapse-item" href="{{ url('antigen/show-all-results')}}">Antigen Test Results</a>
                         <a class="collapse-item" href="{{ url('show-prc-test-results')}}">PCR Test Results</a>
                         <a class="collapse-item" href="{{ url('admin/mail-delivery-status')}}">Mail Status</a>
                     </div>
@@ -396,6 +397,57 @@
         });
 
 
+        //send antigen mail
+        $(".antigenMail").click(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'You are requesting to send mail.',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Send',
+                denyButtonText: 'Dont send',
+            }).then((result) => {
+                var patient_id = $(this).attr("id");
+
+                console.log("Patient ID:", patient_id);
+
+                $.ajax({
+                    url: "{{url('send-antigen-mail-result')}}",
+                    type: "POST",
+                    data: {
+                        _token: '{{csrf_token()}}',
+                        id: patient_id,
+                    },
+                    dataType: 'json',
+                    async: true,
+                    success: function (data) {
+                        console.log(data);
+                        if (data.status === 200)
+                        {
+                            Swal.fire("Send!", data.message, "success");
+                        }
+                        else
+                        {
+                            Swal.fire("Error!", data.message, "error");
+                        }
+                    },
+                    error: function(data)
+                    {
+                        console.log(data);
+                        if(data.status === 500)
+                        {
+                            Swal.fire('Oops!', data.message, 'error')
+                        }
+                        if(data.status === 422)
+                        {
+                            Swal.fire('Oops!', 'Mail already sent', 'error')
+                        }
+                    }
+                });
+            });
+        });
+
+
         $(".pdfResult").click(function(e) {
             e.preventDefault();
             Swal.fire({
@@ -551,6 +603,67 @@
                         $('.success-mail').css('display','block');
                         $('.send-mail').attr("disabled", false);
                         $('.send-mail').html('<i class="fa fa-share"></i> Sending Mail');
+                    }
+                });
+            }
+        });
+    </script>
+
+    //send antigen mail
+    <script>
+        $('.antigen-all').change(function (e)
+        {
+            var value = $('.antigen-all:checked').val();
+            if (value == 1)
+            {
+                $('input[name="ckeck_antigen"]').prop('checked',true);
+                $('.send-antigen-mail').removeAttr('disabled');
+            }
+            else
+            {
+                $('input[name="ckeck_antigen"]').prop('checked',false);
+                $('.send-antigen-mail').attr('disabled','disabled');
+            }
+        });
+
+        $("input[name='ckeck_antigen']").change(function ()
+        {
+            if ($("input[name='ckeck_antigen']:checked").length > 0)
+            {
+                $('.send-antigen-mail').removeAttr('disabled');
+            }
+            else
+            {
+                $('.send-antigen-mail').attr('disabled','disabled');
+            }
+        });
+
+        $('.send-antigen-mail').click(function (e)
+        {
+            e.preventDefault();
+            var ids = [];
+            $.each($('input[name="ckeck_antigen"]:checked'),function()
+            {
+                ids.push($(this).data('id'));
+            });
+
+            if (ids != '')
+            {
+                $(this).attr("disabled", true);
+                $(this).html('<i class="fa fa-spinner fa-spin"></i> Sending Mail');
+                $.ajax({
+                    url: "{{url('send-antigen-multiple')}}",
+                    type: "POST",
+                    data:
+                    {
+                        _token: '{{csrf_token()}}',
+                        ids:ids
+                    },
+                    success: function (data)
+                    {
+                        $('.success-mail').css('display','block');
+                        $('.send-antigen-mail').attr("disabled", false);
+                        $('.send-antigen-mail').html('<i class="fa fa-share"></i> Sending Mail');
                     }
                 });
             }

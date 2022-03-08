@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AntigenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestResultController;
 use App\Models\MailLog;
@@ -78,6 +79,13 @@ Route::get('profile/activity-logs', [ProfileController::class, 'single_log_histo
 
 
 //Route::post('', [TestResultController::class, '']);
+// Antigen section
+Route::get('antigen/show-all-results', [AntigenController::class, 'index'])->name('antigen.show.all.results');
+Route::get('print-antigen-result/{id}', [AntigenController::class, 'printAntigen']);
+Route::post('send-antigen-mail-result', [AntigenController::class, 'sendPatientMailAntigen']);
+Route::post('send-antigen-multiple', [AntigenController::class, 'send_multi_mail_antigen']);
+Route::get('verify-antigen-result/{id}', [AntigenController::class, 'antigen_qrcode']);
+
 
 
 Route::get('file-import-export', [TestResultController::class, 'fileImportExport']);
@@ -94,11 +102,6 @@ Route::delete('admin/delete-user/{id}', [AdminController::class, 'delete']);
 Route::get('/admin/log-history', [AdminController::class, 'log_history'])->name('admin.log.history');
 Route::get('admin/mail-delivery-status', [AdminController::class, 'mail_delivery'])->name('admin.mail.delivery.status');
 
-
-
-
-Route::get('result-verification/{lab_code}/{passport_number}/{document_number}/{patient_name}/{sample_collection_date}',
-[TestResultController::class, 'qr_code_result'])->name('result-verification.lab_code.passport_number.document_number.patient_name.sample_collection_date');
 
 
 Route::get('verified-results/{document_number}', [TestResultController::class, 'single_test_result']);

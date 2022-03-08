@@ -30,6 +30,7 @@ class CreateAntigenTestResultsTable extends Migration
             $table->text('final_result');
             $table->text('sample_type');
             $table->string('patient_location');
+            $table->string('document_number', 15);
             $table->timestamps();
         });
     }
