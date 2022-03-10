@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\PrcScheduleResult::class,
-        commands\PrcScheduleResultNormal::class,
+        Commands\PrcScheduleResultNormal::class,
+        Commands\ImmediateDelivery::class,
     ];
     /**
      * Define the application's command schedule.
