@@ -75,7 +75,7 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $value->patient_name }}</td>
                             <td>{{ Crypt::decryptString($value->patient_email) }}</td>
-                            <td>{{ Crypt::decryptString($value->sample_collection_date) }}</td>
+                            <td>{{ Crypt::decryptString($value->sample_collection_date) }}-{{ Crypt::decryptString($value->sample_collection_time) }}</td>
                             @php
                                 $Name = $value->patient_name;
                                 $Fname = Crypt::decryptString($value->patient_email);
