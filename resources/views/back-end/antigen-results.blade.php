@@ -58,6 +58,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Result Date</th>
+                        <th>Upload Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -76,6 +77,7 @@
                             <td>{{ $value->patient_name }}</td>
                             <td>{{ Crypt::decryptString($value->patient_email) }}</td>
                             <td>{{ Crypt::decryptString($value->result_date) }}</td>
+                            <td>{{ $value->created_at }}</td>
                             @php
                                 $Name = $value->patient_name;
                                 $Fname = Crypt::decryptString($value->patient_email);
