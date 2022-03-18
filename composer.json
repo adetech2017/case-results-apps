@@ -16,7 +16,8 @@
         "laravelcollective/html": "^6.3",
         "maatwebsite/excel": "^3.1",
         "milon/barcode": "^8.0",
-        "santigarcor/laratrust": "^7.0"
+        "santigarcor/laratrust": "^7.0",
+        "shvetsgroup/laravel-email-database-log": "^9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

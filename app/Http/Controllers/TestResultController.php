@@ -18,6 +18,13 @@ use Illuminate\Support\Facades\Auth;
 //use PDF;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
+//use Facade\FlareClient\Stacktrace\File;
+use Spatie\MediaLibrary\Support\MediaStream;
+use ZipArchive;
+use ZipStream\Option\Archive as ArchiveOptions;
+use ZipStream\Option\File as OptionFile;
+use File;
+use Illuminate\Support\Facades\Storage;
 
 class TestResultController extends Controller
 {
@@ -278,9 +285,7 @@ class TestResultController extends Controller
         ]);
     }
 
-    /**
-     * send mail to multiple users
-     */
+
     public function multi_mail(Request $request)
     {
         $checked_array = $request->id;
@@ -335,12 +340,16 @@ class TestResultController extends Controller
     }
 
 
+    /**
+     * send mail to multiple users
+     */
     public function send_multi_mail(Request $request)
     {
         $patients = TestResult::whereIn('id', $request->ids)->get();
 
         if($patients->count() > 0)
         {
+
             foreach($patients as $key => $mailData)
             {
                 Mail::to(Crypt::decryptString($mailData->patient_email))->send(new PatientTestResult($mailData));
@@ -349,8 +358,99 @@ class TestResultController extends Controller
 
         return response()->json(['done']);
     }
-    
-    
+
+
+    public function download(Request $request)
+    {
+        $zip = new ZipArchive;
+        $zipname = 'file.zip';
+
+        $result = TestResult::whereIn('id', $request->ids)->get();
+        $pdf = PDF::loadView('print-result', ["result"=> $result]);
+
+        dd(count($result));
+
+
+        if ($zip->open(public_path($zipname), \ZipArchive::CREATE)== TRUE)
+        {
+
+            foreach ($pdf as $key => $value)
+            {
+                echo 'test';
+                //$relativeName = basename($value);
+                //$zip->addFile($value, $relativeName);
+            }
+            $zip->close();
+        }
+
+        return response()->download(public_path($zipname));
+
+    }
+
+
+    public function zip_file_download(Request $request)
+    {
+        Storage::disk('local')->makeDirectory('tobedownload',$mode=0775); // zip store here
+        $zip = new ZipArchive;
+        $fileName = storage_path('app/tobedownload/invoices.zip');
+        $patients = TestResult::whereIn('id', $request->ids)->get();
+
+        if($patients->count() > 1)
+        {
+            foreach($patients as $key => $result)
+            {
+                $pdf = PDF::loadView('print-result', ["result"=> $result]);
+
+                if($zip->open(public_path($fileName),ZipArchive::CREATE) === TRUE)
+                {
+                    foreach($pdf as $key => $value)
+                    {
+                        $relativeNameInZipFile = basename($value);
+                        $zip->addFile($value, $relativeNameInZipFile);
+                    }
+                    $zip->close();
+                }
+            }
+        }
+        return response()->download(public_path($fileName));
+
+
+        // $zip = new ZipArchive;
+
+        // $fileName = 'results.zip';
+
+        // if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE) {
+
+        //     $files = TestResult::whereIn('id', $request->ids)->get();
+
+        //     foreach ($files as $key => $value) {
+        //         $relativeNameInZipFile = basename($value);
+        //         $zip->addFile($value, $relativeNameInZipFile);
+        //     }
+
+        //     $zip->close();
+        // }
+
+        // return response()->download(public_path($fileName));
+
+
+
+        // $zip = new \ZipArchive();
+        // $fileName = $request->ids.'.zip';
+        // if ($zip->open(public_path($fileName), \ZipArchive::CREATE)== TRUE)
+        // {
+        //     $files = File::files(public_path('uploads/tickets/' . $request->ids));
+        //     foreach ($files as $key => $value){
+        //         $relativeName = basename($value);
+        //         $zip->addFile($value, $relativeName);
+        //     }
+        //     $zip->close();
+        // }
+
+        // return response()->download(public_path($fileName));
+    }
+
+
     /**
      * Edit single officer record in database
      *

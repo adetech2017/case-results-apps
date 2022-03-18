@@ -182,12 +182,24 @@ class AdminController extends Controller
             'test_results.patient_name',
             'mail_logs.email',
             'mail_logs.delivery_status',
-            'mail_logs.created_at'  
+            'mail_logs.created_at'
         )
         ->join('test_results', 'mail_logs.patient_id', '=', 'test_results.id')
         ->orderBy('mail_logs.id', 'DESC')
         ->get();
 
         return view('back-end.mail-logs', ["check"=>$check]);
+    }
+
+    /**
+     * display all mail logs
+     */
+    public function all_mail_logs()
+    {
+        $logs = DB::table('email_log')
+        ->orderByDesc('id')
+        ->get();
+
+        return view('back-end.all-mail-logs', ["logs"=>$logs]);
     }
 }

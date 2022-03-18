@@ -77,6 +77,10 @@ Route::get('profile/change-password', [ProfileController::class, 'changePassword
 Route::put('profile/update-password', [ProfileController::class, 'updatePassword']);
 Route::get('profile/activity-logs', [ProfileController::class, 'single_log_history']);
 
+//zip download
+Route::get('download-multiple', [TestResultController::class, 'download_zip']);
+Route::get('zip-file-download', [TestResultController::class, 'zip_file_download']);
+
 
 //Route::post('', [TestResultController::class, '']);
 // Antigen section
@@ -99,9 +103,10 @@ Route::get('/admin/edit-user-record/{id}', [AdminController::class, 'edit'])->na
 Route::put('admin/update-user/{id}', [AdminController::class, 'update']);
 Route::delete('admin/delete-user/{id}', [AdminController::class, 'delete']);
 
+//Logs
 Route::get('/admin/log-history', [AdminController::class, 'log_history'])->name('admin.log.history');
 Route::get('admin/mail-delivery-status', [AdminController::class, 'mail_delivery'])->name('admin.mail.delivery.status');
-
+Route::get('/admin/all-mail-logs', [AdminController::class, 'all_mail_logs']);
 
 
 Route::get('verified-results/{document_number}', [TestResultController::class, 'single_test_result']);

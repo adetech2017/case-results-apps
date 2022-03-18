@@ -123,6 +123,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Log Histrory:</h6>
                         <a class="collapse-item" href="{{ url('/admin/log-history')}}">All Logs</a>
+                        <a class="collapse-item" href="{{ url('/admin/all-mail-logs')}}">Mail Logs</a>
                     </div>
                 </div>
             </li>
@@ -549,6 +550,7 @@
         });
     </script>
 
+    {{-- send mail to pcr patiets --}}
     <script>
         $('.user-all').change(function (e)
         {
@@ -607,9 +609,38 @@
                 });
             }
         });
+
+        $('.multi-doc-zip').click(function (e)
+        {
+            e.preventDefault();
+            var ids = [];
+            $.each($('input[name="ckeck_user"]:checked'),function()
+            {
+                ids.push($(this).data('id'));
+            });
+
+            if (ids != '')
+            {
+                console.log('Zip file:', ids);
+
+                $.ajax({
+                    url: "{{url('zip-file-download')}}",
+                    type: "GET",
+                    data:
+                    {
+                        _token: '{{csrf_token()}}',
+                        ids:ids
+                    },
+                    success: function (data)
+                    {
+                        console.log('Zip download', data);
+                    }
+                });
+            }
+        });
     </script>
 
-    //send antigen mail
+    {{-- send antigen mail --}}
     <script>
         $('.antigen-all').change(function (e)
         {
@@ -669,6 +700,12 @@
             }
         });
     </script>
+
+    {{-- multiple-file-download --}}
+
+
+
+
 
     <script type="text/javascript">
 
@@ -763,6 +800,8 @@
             }
         });
     </script>
+
+
 
 </body>
 
