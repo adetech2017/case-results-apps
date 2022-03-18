@@ -43,12 +43,12 @@
                     Send Multiple Mail
                 </button>
             </div>
-            <div class="col-md-3 text-right mb-2 p-0">
+            {{-- <div class="col-md-3 text-right mb-2 p-0">
                 <button type="button" class="btn btn-success multi-doc-zip btn-sm">
                     <i class="fa fa-zip"></i>
                     Download Multiple Files
                 </button>
-            </div>
+            </div> --}}
             <div class="col-md-12 success-mail p-0" style="display: none;">
                 <div class="alert alert-success">
                     Sent Mail Successfully.
