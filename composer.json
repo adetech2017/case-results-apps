@@ -17,7 +17,9 @@
         "maatwebsite/excel": "^3.1",
         "milon/barcode": "^8.0",
         "santigarcor/laratrust": "^7.0",
-        "shvetsgroup/laravel-email-database-log": "^9.0"
+        "shvetsgroup/laravel-email-database-log": "^9.0",
+        "zanysoft/laravel-zip": "^1.0",
+        "sendgrid/sendgrid": "~7"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

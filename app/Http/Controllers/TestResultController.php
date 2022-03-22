@@ -23,8 +23,12 @@ use Spatie\MediaLibrary\Support\MediaStream;
 use ZipArchive;
 use ZipStream\Option\Archive as ArchiveOptions;
 use ZipStream\Option\File as OptionFile;
-use File;
+//use File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use ZanySoft\Zip\Zip;
+
+
 
 class TestResultController extends Controller
 {
@@ -450,6 +454,171 @@ class TestResultController extends Controller
         // return response()->download(public_path($fileName));
     }
 
+
+    public function mul_zip_file(Request $request)
+    {
+        // (A) LOAD EXISTING ZIP ARCHIVE
+        $zip = new ZipArchive();
+        $zipfile = "demoA.zip";
+        if ($zip->open($zipfile, ZipArchive::CREATE) === true)
+        {
+            // (B) APPEND FILE INTO ZIP
+            echo $zip->addFile("1-basic.php", "1-basic.php")
+            ? "File added to zip archive" : "Error adding file to zip archive" ;
+
+            // (C) ADD FILE INTO FOLDER IN ZIP
+            echo $zip->addFile("2-append.php", "folder/2-append.php")
+            ? "File added to zip archive" : "Error adding file to zip archive" ;
+
+            // (D) CLOSE ZIP
+            echo $zip->close()
+            ? "Zip archive closed" : "Error closing zip archive" ;
+        }
+
+        // (E) FAILED TO OPEN/CREATE ZIP FILE
+        else
+        {
+            echo "Failed to open/create $zipfile";
+        }
+
+        // Storage::disk('local')->makeDirectory('tobedownload',$mode=0775); // zip store here
+        // $zip_file = storage_path('app/public/tobedownload/invoices.zip');
+        // //zip file name
+        // $zipFileName = 'vendor.zip';
+
+        // $patients = TestResult::whereIn('id', $request->ids)->get();
+        // //create zipArchive Obj
+        // $zip = new ZipArchive;
+
+        // $path = storage_path('invoices');
+        // if($patients->count() > 1)
+        // {
+        //     foreach($patients as $key => $result)
+        //     {
+        //         $pdf = PDF::loadView('print-result', ["result"=> $result]);
+
+        //         $pdfs = $pdf->download($result->patient_name.'.pdf');
+
+        //         //dd($pdfs);
+
+        //         $zip->open($zip_file, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+        //             //$files = Storage::allFiles('public/albums/' . $result->patient_email . '/image_files');
+        //         //$path = storage_path('invoices');
+        //         //$files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
+
+        //         //dd($files);
+
+        //         foreach ($pdfs as $file)
+        //         {
+        //             dd($file);
+        //             // We're skipping all subfolders
+        //             if (!$file->isDir()) {
+        //                 $filePath     = $file->getRealPath();
+        //                 // extracting filename with substr/strlen
+        //                 $relativePath = substr($filePath, strlen($path) + 1);
+        //                 $zip->addFile($filePath, $relativePath);
+        //             }
+        //             //$relativeName = basename($value);
+        //             //$zip->addFile(public_path('albums.zip'), $relativeName);
+        //         }
+        //         $zip->close();
+
+        //     }
+        // }
+        // $headers = array('Content-Type'=>'application/octet-stream',);
+        // $zip_new_name = "Invoice-".date("y-m-d-h-i-s").".zip";
+        // return response()->download($zip_file,$zip_new_name,$headers);
+
+    }
+
+
+
+
+
+    public function zipper_job(Request $request)
+    {
+
+        $zip = new ZipArchive;
+        $filename = "patientsData.zip";
+
+        $results = TestResult::whereIn('id', $request->ids)->get();
+
+        $teamUserIds = [];
+
+        if($zip->open(public_path($filename), ZIPARCHIVE::CREATE | ZIPARCHIVE::OVERWRITE) === TRUE)
+        {
+            if($results->count() > 0)
+            {
+                //dd(count($results));
+                foreach($results as $key => $result)
+                {
+                    $pdf = PDF::loadView('test-print', ["result"=>$result]);
+                    //$pdfs = $pdf->download($result->patient_name.'.pdf');
+                    Storage::put('public/pdf/invoice.pdf', $pdf->output());
+
+                    //$files = File::files(public_path('albums'));
+
+                    //dd(count($files));
+
+                    foreach($pdf as $key => $value)
+                    {
+                        $nameofFile = basename($value);
+                        $zip->addFile($value, $nameofFile);
+                    }
+                }
+                $zip->close();
+            }
+        }
+        return response()->download(public_path($filename));
+    }
+
+
+    public function pump()
+    {
+        if(isset($_POST['files']))
+        {
+            $error = ""; //error holder
+            if(isset($_POST['createzip']))
+            {
+                $post = $_POST;
+                $file_folder = "files/"; // folder to load files
+                if(extension_loaded('zip'))
+                {
+// Checking ZIP extension is available
+if(isset($post['files']) and count($post['files']) > 0)
+{
+// Checking files are selected
+$zip = new ZipArchive(); // Load zip library
+$zip_name = time().".zip"; // Zip name
+if($zip->open($zip_name, ZIPARCHIVE::CREATE)!==TRUE)
+{
+ // Opening zip file to load files
+$error .= "* Sorry ZIP creation failed at this time";
+}
+foreach($post['files'] as $file)
+{
+$zip->addFile($file_folder.$file); // Adding files into zip
+}
+$zip->close();
+if(file_exists($zip_name))
+{
+// push to download the zip
+header('Content-type: application/zip');
+header('Content-Disposition: attachment; filename="'.$zip_name.'"');
+readfile($zip_name);
+// remove zip file is exists in temp path
+unlink($zip_name);
+}
+
+}
+else
+$error .= "* Please select file to zip ";
+}
+else
+$error .= "* You dont have ZIP extension";
+}
+}
+    }
 
     /**
      * Edit single officer record in database

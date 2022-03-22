@@ -31,7 +31,7 @@ class TestResultImport implements ToCollection, WithHeadingRow
     */
     // public function model(array $row)
     // {
-        
+
     //     $user = Auth::user();
 
     //     return new TestResult([
@@ -95,7 +95,7 @@ class TestResultImport implements ToCollection, WithHeadingRow
                 Mail::to(Crypt::decryptString($check['patient_email']))->send(new PcrImmeditate($check));
             }
 
-            
+
         }
     }
 

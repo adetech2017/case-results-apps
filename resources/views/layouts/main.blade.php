@@ -624,7 +624,7 @@
                 console.log('Zip file:', ids);
 
                 $.ajax({
-                    url: "{{url('zip-file-download')}}",
+                    url: "{{url('admin/show-zipper-files')}}",
                     type: "GET",
                     data:
                     {
