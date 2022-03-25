@@ -633,7 +633,9 @@
                     },
                     success: function (data)
                     {
-                        console.log('Zip download', data);
+                        console.log('Zip download:', data);
+                        window.location = data;
+                        $('input:checkbox').removeAttr('checked');
                     }
                 });
             }

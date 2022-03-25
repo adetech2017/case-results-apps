@@ -7,7 +7,7 @@
 <body>
     <div class="container">
         <header>
-            {{$result}}
+            {{$result->patient_name}}
             <div class="lab-banner">
                 <table style="width: 100%;">
                     <tr>

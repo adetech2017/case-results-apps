@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1157a921c54b5332f45b2b0396a6c9ea",
+    "content-hash": "c2e4f4b71a5a010ba3a8e10f711af035",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2860,6 +2860,79 @@
             "time": "2021-07-05T08:18:36+00:00"
         },
         {
+            "name": "nelexa/zip",
+            "version": "4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ne-Lexa/php-zip.git",
+                "reference": "a18f80db509b1b6e9798e2745dc100759107f50c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ne-Lexa/php-zip/zipball/a18f80db509b1b6e9798e2745dc100759107f50c",
+                "reference": "a18f80db509b1b6e9798e2745dc100759107f50c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zlib": "*",
+                "php": "^7.4 || ^8.0",
+                "psr/http-message": "*",
+                "symfony/finder": "*"
+            },
+            "require-dev": {
+                "ext-bz2": "*",
+                "ext-dom": "*",
+                "ext-fileinfo": "*",
+                "ext-iconv": "*",
+                "ext-openssl": "*",
+                "ext-xml": "*",
+                "friendsofphp/php-cs-fixer": "^3.4.0",
+                "guzzlehttp/psr7": "^1.6",
+                "phpunit/phpunit": "^9",
+                "symfony/http-foundation": "*",
+                "symfony/var-dumper": "*",
+                "vimeo/psalm": "^4.6"
+            },
+            "suggest": {
+                "ext-bz2": "Needed to support BZIP2 compression",
+                "ext-fileinfo": "Needed to get mime-type file",
+                "ext-iconv": "Needed to support convert zip entry name to requested character encoding",
+                "ext-openssl": "Needed to support encrypt zip entries or use ext-mcrypt"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpZip\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ne-Lexa",
+                    "email": "alexey@nelexa.ru",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PhpZip is a php-library for extended work with ZIP-archives. Open, create, update, delete, extract and get info tool. Supports appending to existing ZIP files, WinZip AES encryption, Traditional PKWARE Encryption, BZIP2 compression, external file attributes and ZIP64 extensions. Alternative ZipArchive. It does not require php-zip extension.",
+            "homepage": "https://github.com/Ne-Lexa/php-zip",
+            "keywords": [
+                "archive",
+                "extract",
+                "unzip",
+                "winzip",
+                "zip",
+                "ziparchive"
+            ],
+            "support": {
+                "issues": "https://github.com/Ne-Lexa/php-zip/issues",
+                "source": "https://github.com/Ne-Lexa/php-zip/tree/4.0.1"
+            },
+            "time": "2021-12-12T09:50:45+00:00"
+        },
+        {
             "name": "nesbot/carbon",
             "version": "2.57.0",
             "source": {
@@ -4507,6 +4580,68 @@
                 "source": "https://github.com/starkbank/ecdsa-php/tree/v0.0.5"
             },
             "time": "2021-06-06T22:24:49+00:00"
+        },
+        {
+            "name": "stechstudio/laravel-zipstream",
+            "version": "4.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stechstudio/laravel-zipstream.git",
+                "reference": "8484cd8722c5609478c471f8bf43d3d1559002c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stechstudio/laravel-zipstream/zipball/8484cd8722c5609478c471f8bf43d3d1559002c3",
+                "reference": "8484cd8722c5609478c471f8bf43d3d1559002c3",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "illuminate/support": "^5.6|^6.0|^7.0|^8.0|^9.0",
+                "maennchen/zipstream-php": "^v2.0",
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0|^7.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "STS\\ZipStream\\ZipStreamServiceProvider"
+                    ],
+                    "aliases": {
+                        "Zip": "STS\\ZipStream\\ZipStreamFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "STS\\ZipStream\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joseph Szobody",
+                    "email": "joseph@stechstudio.com"
+                }
+            ],
+            "description": "Build",
+            "homepage": "https://github.com/stechstudio/laravel-zipstream",
+            "keywords": [
+                "laravel-zipstream",
+                "stechstudio"
+            ],
+            "support": {
+                "issues": "https://github.com/stechstudio/laravel-zipstream/issues",
+                "source": "https://github.com/stechstudio/laravel-zipstream/tree/4.7"
+            },
+            "time": "2022-02-17T01:33:41+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -108,8 +108,10 @@ Route::get('/admin/log-history', [AdminController::class, 'log_history'])->name(
 Route::get('admin/mail-delivery-status', [AdminController::class, 'mail_delivery'])->name('admin.mail.delivery.status');
 Route::get('/admin/all-mail-logs', [AdminController::class, 'all_mail_logs']);
 
+//zip test section
 Route::get('mul-zip-download', [TestResultController::class, 'mul_zip_file']);
 Route::get('admin/show-zipper-files', [TestResultController::class, 'zipper_job']);
+Route::get('admin/build-zip-test', [TestResultController::class, 'build_zip']);
 
 
 Route::get('verified-results/{document_number}', [TestResultController::class, 'single_test_result']);
