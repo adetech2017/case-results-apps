@@ -375,7 +375,7 @@ class TestResultController extends Controller
             PDF::loadHTML($html)->save(public_path().'/bulk_invoices/'.$result->patient_name.'.pdf');
         }
 
-        if($zip->open(public_path($filename), ZipArchive::OVERWRITE | ZipArchive::CREATE)!== TRUE)
+        if($zip->open(public_path($filename), ZipArchive::OVERWRITE | ZipArchive::CREATE)=== TRUE)
         {
             $files = File::files(public_path('bulk_invoices'));
             //dd(count($files));
@@ -397,7 +397,7 @@ class TestResultController extends Controller
     public function build_zip(Request $request)
     {
         $zip = new ZipArchive();
-        $zip_file = time().'patients.zip';
+        $zip_file = 'patients.zip';
 
         $results = TestResult::whereIn('id', $request->ids)->get();
 
@@ -410,7 +410,7 @@ class TestResultController extends Controller
 
         }
 
-        if($zip->open($zip_file,  ZipArchive::OVERWRITE | ZipArchive::CREATE )!== TRUE)
+        if($zip->open($zip_file,  ZipArchive::OVERWRITE | ZipArchive::CREATE )=== TRUE)
         {
             $files = File::files(public_path('bulk_invoices'));
 
@@ -423,8 +423,8 @@ class TestResultController extends Controller
         }
         $headers = header('Content-type: application/zip');
 
-        return response()->download(public_path($zip_file, $headers))->deleteFileAfterSend(true);
-
+        //return response()->download(public_path($zip_file, $headers))->deleteFileAfterSend(true);
+        return response()->json($zip_file);
     }
 
 
