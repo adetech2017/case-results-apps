@@ -50,7 +50,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Revenue Code</label>
+                        <label>Upload File</label>
                         <input type="file" name="file" class="form-control">
                     </div>
                 </div>

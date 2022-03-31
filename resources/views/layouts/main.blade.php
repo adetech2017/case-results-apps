@@ -124,6 +124,7 @@
                         <h6 class="collapse-header">Log Histrory:</h6>
                         <a class="collapse-item" href="{{ url('/admin/log-history')}}">All Logs</a>
                         <a class="collapse-item" href="{{ url('/admin/all-mail-logs')}}">Mail Logs</a>
+                        <a class="collapse-item" href="{{ url('/admin/archive-results')}}">Multiple Download</a>
                     </div>
                 </div>
             </li>
@@ -635,7 +636,7 @@
                     {
                         console.log('Zip download:', data);
                         window.location = data;
-                        $('input:checkbox').removeAttr('checked');
+
                     }
                 });
             }

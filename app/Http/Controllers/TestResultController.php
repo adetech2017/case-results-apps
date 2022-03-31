@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\AntigenTestResultImport;
 use App\Imports\TestResultImport;
 use App\Mail\PatientTestResult;
+use App\Models\AntigenTestResult;
 use App\Models\FileUploadLog;
 use App\Models\MailLog;
 use App\Models\TestResult;
@@ -365,6 +366,8 @@ class TestResultController extends Controller
         $public_dir = public_path();
         $filename = "patientsData.zip";
 
+        File::makeDirectory(public_path('bulk_results'), 0775, true);
+
         $results = TestResult::whereIn('id', $request->ids)->get();
 
         foreach($results as $key => $result)
@@ -372,12 +375,12 @@ class TestResultController extends Controller
             $html = '';
             $view = view('print-result')->with(compact('result'));
             $html .= $view->render();
-            PDF::loadHTML($html)->save(public_path().'/bulk_invoices/'.$result->patient_name.'.pdf');
+            PDF::loadHTML($html)->save(public_path().'/bulk_results/'.$result->patient_name.'.pdf');
         }
 
-        if($zip->open(public_path($filename), ZipArchive::OVERWRITE | ZipArchive::CREATE)=== TRUE)
+        if($zip->open(public_path($filename), ZipArchive::CREATE | ZipArchive::OVERWRITE)=== TRUE)
         {
-            $files = File::files(public_path('bulk_invoices'));
+            $files = File::files(public_path('bulk_results'));
             //dd(count($files));
             foreach($files as $key => $value)
             {
@@ -390,6 +393,7 @@ class TestResultController extends Controller
         $headers = array(
             'Content-Type' => 'application/octet-stream',
         );
+        File::deleteDirectory(public_path('bulk_results'));
         return response()->json($filename);
     }
 
@@ -463,6 +467,123 @@ class TestResultController extends Controller
 
         return view('createZip');
     }
+
+    /**
+     * view for multiple zip
+     */
+    public function multiple_zip_dir()
+    {
+        $data = DB::table('test_categories')->get();
+
+        return view('back-end.archive', ["data"=>$data]);
+    }
+
+    /**
+     * method for download
+     */
+    public function submit_multi_zip(Request $request)
+    {
+        $zip = new ZipArchive();
+        //$zip_file = time().'patients.zip';
+        $zip_file = time()."patientsData.zip";
+        $filename = "patientsData.zip";
+
+        if($request->test_result_id === '2')
+        {
+            File::makeDirectory(public_path('bulk_results'), 0775, true);
+
+            $from = $request->from_date;
+            $to = $request->to_date;
+            $title = "Result From: ".$from." To: ".$to;
+
+            $results = TestResult::whereBetween('created_at', [$from.' 00:00:00',$to.' 23:59:59'])->get();
+
+            foreach($results as $key => $result)
+            {
+                $html = '';
+                $view = view('print-result')->with(compact('result'));
+                $html .= $view->render();
+                PDF::loadHTML($html)->save(public_path().'/bulk_results/'.$result->patient_name.'.pdf');
+
+            }
+
+            if($zip->open($zip_file,  ZipArchive::CREATE | ZipArchive::OVERWRITE )=== TRUE)
+            {
+                $files = File::files(public_path('bulk_results'));
+
+                foreach ($files as $key => $value)
+                {
+                    $nameofFile = basename($value);
+                    $zip->addFile($value, $nameofFile);
+                }
+
+                $zip->close();
+            }
+
+            if(file_exists($zip_file))
+            {
+                // push to download the zip
+                header('Content-type: application/zip');
+                header('Content-Disposition: attachment; filename="'.$zip_file.'"');
+                readfile($zip_file);
+                // remove zip file is exists in temp path
+                File::deleteDirectory(public_path('bulk_results'));
+                unlink($zip_file);
+            }
+            //$headers = header('Content-type: application/zip');
+            //return response()->download($zip_file, $headers);
+        }
+        elseif($request->test_result_id === '1')
+        {
+            File::makeDirectory(public_path('bulk_results'), 0775, true);
+
+            $from = $request->from_date;
+            $to = $request->to_date;
+            $title = "Result From: ".$from." To: ".$to;
+
+            $results = AntigenTestResult::whereBetween('created_at', [$from.' 00:00:00',$to.' 23:59:59'])->get();
+
+            foreach($results as $key => $result)
+            {
+                $html = '';
+                $view = view('antigen-test-result')->with(compact('result'));
+                $html .= $view->render();
+                PDF::loadHTML($html)->save(public_path().'/bulk_results/'.$result->patient_name.'.pdf');
+
+            }
+
+            if($zip->open($zip_file,  ZipArchive::CREATE | ZipArchive::OVERWRITE )=== TRUE)
+            {
+                $files = File::files(public_path('bulk_results'));
+
+                foreach ($files as $key => $value)
+                {
+                    $nameofFile = basename($value);
+                    $zip->addFile($value, $nameofFile);
+                }
+
+                $zip->close();
+            }
+
+            if(file_exists($zip_file))
+            {
+                // push to download the zip
+                header('Content-type: application/zip');
+                header('Content-Disposition: attachment; filename="'.$zip_file.'"');
+                readfile($zip_file);
+                // remove zip file is exists in temp path
+                File::deleteDirectory(public_path('bulk_results'));
+                unlink($zip_file);
+            }
+        }
+        else
+        {
+            return back()->with('error', 'No upload category selected');
+        }
+        return redirect()->back()->with('error', 'File zipped successfully!');
+    }
+
+
 
 
     /**

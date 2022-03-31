@@ -113,10 +113,18 @@ Route::get('mul-zip-download', [TestResultController::class, 'mul_zip_file']);
 Route::get('admin/show-zipper-files', [TestResultController::class, 'zipper_job']);
 Route::get('admin/build-zip-test', [TestResultController::class, 'build_zip']);
 
+Route::get('/admin/archive-results', [TestResultController::class, 'multiple_zip_dir']);
+Route::post('admin/submit-multi-zip', [TestResultController::class, 'submit_multi_zip'])->name('admin.multi.zip');
+
 
 Route::get('verified-results/{document_number}', [TestResultController::class, 'single_test_result']);
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // });
+
+
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
 
 require __DIR__.'/auth.php';
