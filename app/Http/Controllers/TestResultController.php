@@ -366,7 +366,10 @@ class TestResultController extends Controller
         $public_dir = public_path();
         $filename = "patientsData.zip";
 
-        File::makeDirectory(public_path('bulk_results'), 0775, true);
+        if (!File::exists(public_path('bulk_results')))
+        {
+            File::makeDirectory(public_path('bulk_results'), 0775, true);
+        }
 
         $results = TestResult::whereIn('id', $request->ids)->get();
 
@@ -490,7 +493,11 @@ class TestResultController extends Controller
 
         if($request->test_result_id === '2')
         {
-            File::makeDirectory(public_path('bulk_results'), 0775, true);
+            if (!File::exists(public_path('bulk_results')))
+            {
+                File::makeDirectory(public_path('bulk_results'), 0775, true);
+            }
+
 
             $from = $request->from_date;
             $to = $request->to_date;
@@ -535,7 +542,10 @@ class TestResultController extends Controller
         }
         elseif($request->test_result_id === '1')
         {
-            File::makeDirectory(public_path('bulk_results'), 0775, true);
+            if (!File::exists(public_path('bulk_results')))
+            {
+                File::makeDirectory(public_path('bulk_results'), 0775, true);
+            }
 
             $from = $request->from_date;
             $to = $request->to_date;
