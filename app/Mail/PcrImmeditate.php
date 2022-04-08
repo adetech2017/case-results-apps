@@ -11,7 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class PcrImmeditate extends Mailable
 {
     use Queueable, SerializesModels;
-    public $check;
+    public $result;
     public $pdf;
 
     /**
@@ -19,11 +19,11 @@ class PcrImmeditate extends Mailable
      *
      * @return void
      */
-    public function __construct($check)
+    public function __construct($result)
     {
-        $this->mailData = $check;
+        $this->mailData = $result;
 
-        $this->pdf = PDF::loadView('pcr-instant', ["result" => $check]);
+        $this->pdf = PDF::loadView('pcr-instant', ["result" => $result]);
     }
 
     /**

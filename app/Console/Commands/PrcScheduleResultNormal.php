@@ -42,8 +42,8 @@ class PrcScheduleResultNormal extends Command
      */
     public function handle()
     {
-        $patients = TestResult::where('result_timer', '>=', Carbon::now()->subHours(12)->toDateTimeString())
-        ->where('result_timer', '<=', Carbon::now()->subHours(24)->toDateTimeString())
+        $patients = TestResult::where('result_timer', '>=', Carbon::now()->subHours(4)->toDateTimeString())
+        ->where('result_timer', '<=', Carbon::now()->subHours(5)->toDateTimeString())
         ->where('patient_type', '=', 'Normal')
         ->get();
 
