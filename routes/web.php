@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AntigenController;
+use App\Http\Controllers\HepBTestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestResultController;
 use App\Models\MailLog;
@@ -121,6 +122,15 @@ Route::get('verified-results/{document_number}', [TestResultController::class, '
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // });
+
+// Routes for hep-b test results
+Route::get('hep-b/create-new-hep-test', [HepBTestController::class, 'index']);
+Route::post('import-hep-b-test', [HepBTestController::class, 'store'])->name('import.hep.test');
+Route::get('hep-b/all-hep-results', [HepBTestController::class, 'all_hep_reults']);
+Route::get('download-hep-b-sample', [HepBTestController::class, 'hep_sample']);
+Route::post('send-hep-b-mail', [HepBTestController::class, 'sendHepBMail']);
+Route::get('print-hep-result/{id}', [HepBTestController::class, 'printHepResult']);
+Route::post('send-multi-hep-mail', [HepBTestController::class, 'send_multi_hep_mail_result']);
 
 
 Route::get('/debug-sentry', function () {

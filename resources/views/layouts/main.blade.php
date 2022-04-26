@@ -87,6 +87,22 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Hep-B Test</span>
+                </a>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Hep-B Result:</h6>
+                        <a class="collapse-item" href="{{ url('hep-b/create-new-hep-test')}}">Upload Result</a>
+                        <a class="collapse-item" href="{{ url('hep-b/all-hep-results')}}">Hep-B Test Results</a>
+                    </div>
+                </div>
+            </li>
+
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -507,6 +523,57 @@
             $(this).val(checked ? 'uncheck all' : 'check all' )
             $(this).data('checked', checked);
         });
+
+
+        //send hep-b mail
+        $(".hepMail").click(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'You are requesting to send mail.',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Send',
+                denyButtonText: 'Dont send',
+            }).then((result) => {
+                var patient_id = $(this).attr("id");
+
+                console.log("Patient ID:", patient_id);
+
+                $.ajax({
+                    url: "{{url('send-hep-b-mail')}}",
+                    type: "POST",
+                    data: {
+                        _token: '{{csrf_token()}}',
+                        id: patient_id,
+                    },
+                    dataType: 'json',
+                    async: true,
+                    success: function (data) {
+                        console.log(data);
+                        if (data.status === 200)
+                        {
+                            Swal.fire("Send!", data.message, "success");
+                        }
+                        else
+                        {
+                            Swal.fire("Error!", data.message, "error");
+                        }
+                    },
+                    error: function(data)
+                    {
+                        console.log(data);
+                        if(data.status === 500)
+                        {
+                            Swal.fire('Oops!', data.message, 'error')
+                        }
+                        if(data.status === 422)
+                        {
+                            Swal.fire('Oops!', 'Mail already sent', 'error')
+                        }
+                    }
+                });
+            });
+        });
     </script>
 
     <script>
@@ -551,7 +618,7 @@
         });
     </script>
 
-    {{-- send mail to pcr patiets --}}
+    {{-- send mail to pcr patients --}}
     <script>
         $('.user-all').change(function (e)
         {
@@ -705,6 +772,67 @@
     </script>
 
     {{-- multiple-file-download --}}
+
+    {{-- send multiple hep-b mail --}}
+    <script>
+        $('.hep-b-all').change(function (e)
+        {
+            var value = $('.hep-b-all:checked').val();
+            if (value == 1)
+            {
+                $('input[name="ckeck_hep_b"]').prop('checked',true);
+                $('.send-hep-b-mail').removeAttr('disabled');
+            }
+            else
+            {
+                $('input[name="ckeck_hep_b"]').prop('checked',false);
+                $('.send-hep-b-mail').attr('disabled','disabled');
+            }
+        });
+
+        $("input[name='ckeck_hep_b']").change(function ()
+        {
+            if ($("input[name='ckeck_hep_b']:checked").length > 0)
+            {
+                $('.send-hep-b-mail').removeAttr('disabled');
+            }
+            else
+            {
+                $('.send-hep-b-mail').attr('disabled','disabled');
+            }
+        });
+
+        $('.send-hep-b-mail').click(function (e)
+        {
+            e.preventDefault();
+            var ids = [];
+            $.each($('input[name="ckeck_hep_b"]:checked'),function()
+            {
+                ids.push($(this).data('id'));
+            });
+
+            if (ids != '')
+            {
+                $(this).attr("disabled", true);
+                $(this).html('<i class="fa fa-spinner fa-spin"></i> Sending Mail');
+                $.ajax({
+                    url: "{{url('send-multi-hep-mail')}}",
+                    type: "POST",
+                    data:
+                    {
+                        _token: '{{csrf_token()}}',
+                        ids:ids
+                    },
+                    success: function (data)
+                    {
+                        $('.success-mail').css('display','block');
+                        $('.send-hep-b-mail').attr("disabled", false);
+                        $('.send-hep-b-mail').html('<i class="fa fa-share"></i> Sending Mail');
+                    }
+                });
+            }
+        });
+    </script>
 
 
 
