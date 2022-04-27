@@ -57,7 +57,12 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$delivered}}</div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                    @php
+                                        $deliver_mail = DB::table('email_log')->get();
+                                    @endphp
+                                    {{$deliver_mail->count()}}
+                                </div>
                             </div>
                             <div class="col">
                                 <div class="progress progress-sm mr-2">
@@ -106,8 +111,13 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Express patients for Today</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$express_day}}</div>
+                            PCR Test for Today</div>
+                            @php
+                                $daily_result_pcr = \App\Models\TestResult::whereDate('created_at', Carbon\Carbon::today())->get();
+                            @endphp
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            {{$daily_result_pcr->count()}}
+                        </div>
                     </div>
                     <div class="col-auto">
                         <i class="fa fa-hospital-user fa-2x text-gray-300"></i>
@@ -124,8 +134,13 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                            Normal patients for Today</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$normal_day}}</div>
+                            Antigen Result for Today</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @php
+                                $antigen_daily_result = \App\Models\AntigenTestResult::whereDate('created_at', Carbon\Carbon::today())->get();
+                            @endphp
+                            {{$antigen_daily_result->count()}}
+                        </div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-hospital-user fa-2x text-gray-300"></i>
@@ -141,17 +156,17 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Express Email Send for Today
+                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Immediate Email Send for Today
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$delivered}}</div>
-                            </div>
-                            <div class="col">
-                                <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar bg-info" role="progressbar"
-                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                        aria-valuemax="100"></div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                    @php
+                                        $express_daily_result = \App\Models\TestResult::whereDate('created_at', Carbon\Carbon::today())
+                                        ->where('patient_type', '=', 'Immediate')
+                                        ->get();
+                                    @endphp
+                                    {{$express_daily_result->count()}}
                                 </div>
                             </div>
                         </div>
@@ -172,7 +187,14 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
                             Normal Email Send for today</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$failed}}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @php
+                                $express_daily_result = \App\Models\TestResult::whereDate('created_at', Carbon\Carbon::today())
+                                ->where('patient_type', '=', 'Normal')
+                                ->get();
+                            @endphp
+                            {{$express_daily_result->count()}}
+                        </div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-envelope fa-2x text-gray-300"></i>
