@@ -5,6 +5,7 @@ use App\Http\Controllers\AntigenController;
 use App\Http\Controllers\HepBTestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestResultController;
+use App\Models\AntigenTestResult;
 use App\Models\MailLog;
 use App\Models\TestResult;
 use App\Models\User;
@@ -25,23 +26,25 @@ use Illuminate\Support\Facades\DB;
 Route::get('/dashboard', function () {
     $total = TestResult::count();
     $users = User::count();
-    $delivered = MailLog::where('delivery_status', 'Success')->count();
     $failed = MailLog::where('delivery_status', 'Failed')->count();
-    //$bounced = TestResult::where('status', 'bounced')->count();
     $patients = TestResult::select(DB::raw("COUNT(*) as count"))
         ->whereYear('created_at', date('Y'))
         ->groupBy(DB::raw("Month(created_at)"))
         ->pluck('count');
-    $express_day = TestResult::whereDate('created_at', Carbon::today())
-    ->where('patient_type', '=', 'Express')
-    ->count();
 
-    $normal_day = TestResult::whereDate('created_at', Carbon::today())
+    $deliver_mail = DB::table('email_log')->get();
+    $daily_result_pcr = TestResult::whereDate('created_at', Carbon::today())->get();
+    $antigen_daily_result = AntigenTestResult::whereDate('created_at', Carbon::today())->get();
+    $express_daily_result = TestResult::whereDate('created_at', Carbon::today())
+    ->where('patient_type', '=', 'Immediate')
+    ->get();
+    $normal_daily_result = TestResult::whereDate('created_at', Carbon::today())
     ->where('patient_type', '=', 'Normal')
-    ->count();
+    ->get();
 
-    return view('dashboard', ["total"=>$total, "users"=>$users, "delivered"=>$delivered,
-        "failed"=>$failed, "patients"=>$patients, "express_day"=> $express_day, "normal_day"=>$normal_day]
+    return view('dashboard', ["total"=>$total, "users"=>$users, "deliver_mail"=>$deliver_mail,
+        "failed"=>$failed, "patients"=>$patients, "daily_result_pcr"=> $daily_result_pcr, "antigen_daily_result"=>$antigen_daily_result,
+        "express_daily_result"=>$express_daily_result, "normal_daily_result"=>$normal_daily_result]
     );
 })->middleware(['auth'])->name('dashboard');
 

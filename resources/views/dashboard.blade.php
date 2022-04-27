@@ -58,9 +58,6 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                    @php
-                                        $deliver_mail = DB::table('email_log')->get();
-                                    @endphp
                                     {{$deliver_mail->count()}}
                                 </div>
                             </div>
@@ -112,9 +109,6 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             PCR Test for Today</div>
-                            @php
-                                $daily_result_pcr = \App\Models\TestResult::whereDate('created_at', Carbon\Carbon::today())->get();
-                            @endphp
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                             {{$daily_result_pcr->count()}}
                         </div>
@@ -136,9 +130,6 @@
                         <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
                             Antigen Result for Today</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            @php
-                                $antigen_daily_result = \App\Models\AntigenTestResult::whereDate('created_at', Carbon\Carbon::today())->get();
-                            @endphp
                             {{$antigen_daily_result->count()}}
                         </div>
                     </div>
@@ -161,11 +152,6 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                    @php
-                                        $express_daily_result = \App\Models\TestResult::whereDate('created_at', Carbon\Carbon::today())
-                                        ->where('patient_type', '=', 'Immediate')
-                                        ->get();
-                                    @endphp
                                     {{$express_daily_result->count()}}
                                 </div>
                             </div>
@@ -188,12 +174,7 @@
                         <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
                             Normal Email Send for today</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            @php
-                                $express_daily_result = \App\Models\TestResult::whereDate('created_at', Carbon\Carbon::today())
-                                ->where('patient_type', '=', 'Normal')
-                                ->get();
-                            @endphp
-                            {{$express_daily_result->count()}}
+                            {{$normal_daily_result->count()}}
                         </div>
                     </div>
                     <div class="col-auto">
