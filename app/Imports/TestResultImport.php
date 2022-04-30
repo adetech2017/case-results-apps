@@ -95,12 +95,19 @@ class TestResultImport implements ToCollection, WithHeadingRow
                 'result_timer' => Carbon::createFromFormat('m/d/Y H:i', $row['sample_collection_date'].$row['sample_collection_time'])->format('Y-m-d H:i')
             ]);
 
-            if($check['patient_type'] === 'Immediate')
+            // if($check['patient_type'] === 'Immediate')
+            // {
+            //     Mail::to(Crypt::decryptString($check['patient_email']))->send(new PcrImmeditate($check));
+            // }
+
+
+        }
+        foreach($check as $key => $result)
+        {
+            if($result->patient_type === 'Immediate')
             {
-                Mail::to(Crypt::decryptString($check['patient_email']))->send(new PcrImmeditate($check));
+                Mail::to(Crypt::decryptString($result->patient_email))->send(new PcrImmeditate($result));
             }
-
-
         }
         //dd($check);
         // $zip = new ZipArchive();

@@ -105,7 +105,7 @@ class TestResultController extends Controller
         {
             Excel::import(new TestResultImport, $request->file('file')->store('temp'));
 
-            return back()->with('status', 'File upload successfully!');
+            return back()->with('status', 'File upload successfully!, mail sent');
         }
         elseif($request->test_result_id === '1')
         {
