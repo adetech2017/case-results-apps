@@ -95,69 +95,58 @@ class TestResultImport implements ToCollection, WithHeadingRow
                 'result_timer' => Carbon::createFromFormat('m/d/Y H:i', $row['sample_collection_date'].$row['sample_collection_time'])->format('Y-m-d H:i')
             ]);
 
-            // if($check['patient_type'] === 'Immediate')
-            // {
-            //     Mail::to(Crypt::decryptString($check['patient_email']))->send(new PcrImmeditate($check));
-            // }
+            if($check['patient_type'] === 'Immediate')
+            {
+                Mail::to(Crypt::decryptString($check['patient_email']))->send(new PcrImmeditate($check));
+            }
 
 
         }
         //dd($check);
-        $zip = new ZipArchive();
-        $zip_file = 'batch-results-archive/batch-'.time().'.zip';
+        // $zip = new ZipArchive();
+        // $zip_file = 'batch-results-archive/batch-'.time().'.zip';
 
-        foreach($check as $key => $result)
-        {
-            if($result->patient_type === 'Immediate')
-            {
-                Mail::to(Crypt::decryptString($result->patient_email))->send(new PcrImmeditate($result));
-            }
+        // foreach($check as $key => $result)
+        // {
+        //     if($result->patient_type === 'Immediate')
+        //     {
+        //         Mail::to(Crypt::decryptString($result->patient_email))->send(new PcrImmeditate($result));
+        //     }
 
-            if(!File::exists(public_path('batch_results')))
-            {
-                File::makeDirectory(public_path('batch_results'), 0775, true);
-            }
+        //     if(!File::exists(public_path('batch_results')))
+        //     {
+        //         File::makeDirectory(public_path('batch_results'), 0775, true);
+        //     }
 
-            $html = '';
-            $view = view('print-result')->with(compact('result'));
-            $html .= $view->render();
-            Pdf::loadHTML($html)->save(public_path().'/batch_results/'.$result->patient_name.'.pdf');
+        //     $html = '';
+        //     $view = view('print-result')->with(compact('result'));
+        //     $html .= $view->render();
+        //     Pdf::loadHTML($html)->save(public_path().'/batch_results/'.$result->patient_name.'.pdf');
 
 
-        }
-        if($zip->open($zip_file,  ZipArchive::CREATE | ZipArchive::OVERWRITE )=== TRUE)
-        {
-            $files = File::files(public_path('batch_results'));
+        // }
+        // if($zip->open($zip_file,  ZipArchive::CREATE | ZipArchive::OVERWRITE )=== TRUE)
+        // {
+        //     $files = File::files(public_path('batch_results'));
 
-            foreach ($files as $key => $value)
-            {
-                $nameofFile = basename($value);
-                $zip->addFile($value, $nameofFile);
-            }
+        //     foreach ($files as $key => $value)
+        //     {
+        //         $nameofFile = basename($value);
+        //         $zip->addFile($value, $nameofFile);
+        //     }
 
-            $zip->close();
-        }
-        if(file_exists($zip_file))
-        {
-            // push to download the zip
-            header('Content-type: application/zip');
-            header('Content-Disposition: attachment; filename="'.$zip_file.'"');
-            readfile($zip_file);
-            // remove zip file is exists in temp path
-            File::deleteDirectory(public_path('batch_results'));
-            unlink($zip_file);
-        }
+        //     $zip->close();
+        // }
+        // if(file_exists($zip_file))
+        // {
+        //     // push to download the zip
+        //     header('Content-type: application/zip');
+        //     header('Content-Disposition: attachment; filename="'.$zip_file.'"');
+        //     readfile($zip_file);
+        //     // remove zip file is exists in temp path
+        //     File::deleteDirectory(public_path('batch_results'));
+        //     unlink($zip_file);
+        // }
 
     }
-
-    // public function rules(): array
-    // {
-    //     return [
-    //         'patient_email' => Rule::in(['sample@hotmail.com']),
-
-    //         // Above is alias for as it always validate in batches
-    //         '*.patient_email' => Rule::in(['sample@hotmail.com']),
-    //     ];
-    //'document_number' => 'BIX-'.random_int(000000, 999999),
-    // }
 }
