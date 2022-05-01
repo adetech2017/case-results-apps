@@ -201,7 +201,7 @@ class AdminController extends Controller
 
         $logs = DB::table('email_log')
         ->select(DB::raw('*'))
-        ->where('created_at', '>=', $date)
+        ->where('date', '>=', $date)
         ->orderByDesc('id')
         ->get();
 
