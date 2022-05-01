@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['cors'])->group(function ()
 {
     Route::post('upload-pcr-file', [PcrImportController::class, 'prc_import']);
+    Route::post('add-new-result', [PcrImportController::class, 'new_results']);
 });
 
 
