@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -196,7 +197,11 @@ class AdminController extends Controller
      */
     public function all_mail_logs()
     {
+        $date = Carbon::now()->subDays(7);
+
         $logs = DB::table('email_log')
+        ->select(DB::raw('*'))
+        ->where('created_at', '>=', $date)
         ->orderByDesc('id')
         ->get();
 

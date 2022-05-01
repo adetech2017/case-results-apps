@@ -841,6 +841,7 @@
     <script type="text/javascript">
 
         var patients = <?php echo json_encode($patients) ?>;
+        console.log(patients);
         // Area Chart Example
         var ctx = document.getElementById("patientsChart");
         var myLineChart = new Chart(ctx, {
