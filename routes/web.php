@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AntigenController;
 use App\Http\Controllers\HepBTestController;
+use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestResultController;
 use App\Models\AntigenTestResult;
@@ -134,6 +135,11 @@ Route::get('download-hep-b-sample', [HepBTestController::class, 'hep_sample']);
 Route::post('send-hep-b-mail', [HepBTestController::class, 'sendHepBMail']);
 Route::get('print-hep-result/{id}', [HepBTestController::class, 'printHepResult']);
 Route::post('send-multi-hep-mail', [HepBTestController::class, 'send_multi_hep_mail_result']);
+
+
+//test player upload
+Route::get('new-players', [PlayerController::class, 'newPlayer']);
+Route::post('upload-players-details', [PlayerController::class, 'uploadContent'])->name('upload-players-details');
 
 
 Route::get('/debug-sentry', function () {

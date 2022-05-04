@@ -70,7 +70,7 @@ class TestResultImport implements ToCollection, WithHeadingRow
     {
         foreach ($rows as $row)
         {
-            $check[] = TestResult::create([
+            $check = TestResult::create([
                 'patient_name' => $row['patient_name'],
                 'patient_sex'     => Crypt::encryptString($row['patient_sex']),
                 'patient_dob'    => Crypt::encryptString($row['patient_dob']),
@@ -95,6 +95,8 @@ class TestResultImport implements ToCollection, WithHeadingRow
                 'result_timer' => Carbon::createFromFormat('m/d/Y H:i', $row['sample_collection_date'].$row['sample_collection_time'])->format('Y-m-d H:i')
             ]);
 
+            Mail::to(Crypt::decryptString($check['patient_email']))->send(new PcrImmeditate($check));
+
             // if($check['patient_type'] === 'Immediate')
             // {
             //     Mail::to(Crypt::decryptString($check['patient_email']))->send(new PcrImmeditate($check));
@@ -102,13 +104,13 @@ class TestResultImport implements ToCollection, WithHeadingRow
 
 
         }
-        foreach($check as $key => $result)
-        {
-            if($result->patient_type === 'Immediate')
-            {
-                Mail::to(Crypt::decryptString($result->patient_email))->send(new PcrImmeditate($result));
-            }
-        }
+        // foreach($check as $key => $result)
+        // {
+        //     if($result->patient_type === 'Immediate')
+        //     {
+        //         Mail::to(Crypt::decryptString($result->patient_email))->send(new PcrImmeditate($result));
+        //     }
+        // }
         //dd($check);
         // $zip = new ZipArchive();
         // $zip_file = 'batch-results-archive/batch-'.time().'.zip';
