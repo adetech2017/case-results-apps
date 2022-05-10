@@ -13,7 +13,12 @@ use App\Helpers\TestHelper;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PcrImmeditate;
+use App\Models\AntigenTestResult;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use App\Mail\AntigenImmediateMail;
+use App\Mail\HepBTest as MailHepBTest;
+use App\Models\HepBTest;
 
 class PcrImportController extends Controller
 {
@@ -88,6 +93,105 @@ class PcrImportController extends Controller
 
             return response()->json([
                 'message' => 'Result successfully sent and mail delivered.'
+            ], Response::HTTP_OK);
+        }
+    }
+
+    /**
+     * endpoint for antigen test results
+     */
+    public function new_atigen(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'patient_name' => 'required|string',
+            'patient_email' => 'required|string|email|max:100',
+            'patient_phone' => 'required|string',
+            'patient_sex' => 'required|string',
+            'patient_nationality' => 'required|string',
+            'lab_code' => 'required|string',
+            'result_date' => 'required|string',
+            'final_result' => 'required|string',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 422);
+        }
+
+        $antigen = new AntigenTestResult();
+
+        $antigen->patient_name = $request->input('patient_name');
+        $antigen->case_uid = Str::uuid()->toString();
+        $antigen->patient_sex = Crypt::encryptString($request->input('patient_sex'));
+        $antigen->patient_dob = Crypt::encryptString($request->input('patient_dob'));
+        $antigen->patient_phone = Crypt::encryptString($request->input('patient_phone'));
+        $antigen->patient_email = Crypt::encryptString($request->input('patient_email'));
+        $antigen->patient_nationality = Crypt::encryptString($request->input('patient_nationality'));
+        $antigen->passport_number = Crypt::encryptString($request->input('passport_number'));
+        $antigen->lab_code = Crypt::encryptString($request->input('lab_code'));
+        $antigen->collection_date = Crypt::encryptString($request->input('collection_date'));
+        $antigen->collection_time = Crypt::encryptString($request->input('collection_time'));
+        $antigen->result_date = Crypt::encryptString($request->input('result_date'));
+        $antigen->final_result = Crypt::encryptString($request->input('final_result'));
+        $antigen->sample_type = Crypt::encryptString($request->input('sample_type'));
+        $antigen->patient_location = $request->input('patient_location');
+        $antigen->document_number = TestHelper::IDGenerator(new AntigenTestResult(), 'document_number', 6);
+
+
+        if ($antigen->save())
+        {
+            Mail::to(Crypt::decryptString($antigen->patient_email))->send(new AntigenImmediateMail($antigen));
+
+            return response()->json([
+                'message' => 'Antgen Result successfully sent and mail delivered.'
+            ], Response::HTTP_OK);
+        }
+    }
+
+    /**
+     * Hep-B api endpoints
+     */
+    public function new_hpyer_b_test(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'patient_name' => 'required|string',
+            'patient_email' => 'required|string|email|max:100',
+            'patient_age' => 'required|string',
+            'patient_sex' => 'required|string',
+            'result' => 'required|string',
+            'reference' => 'required|string',
+            'date_reported' => 'required|string'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 422);
+        }
+
+        $hep = new HepBTest;
+
+        $hep->patient_name = $request->input('patient_name');
+        $hep->patient_sex = Crypt::encryptString($request->input('patient_sex'));
+        $hep->patient_dob = Crypt::encryptString($request->input('patient_dob'));
+        $hep->patient_age = Crypt::encryptString($request->input('patient_age'));
+        $hep->patient_email = Crypt::encryptString($request->input('patient_email'));
+        $hep->sample_collection_date = Crypt::encryptString($request->input('sample_collection_date'));
+        $hep->date_received = Crypt::encryptString($request->input('date_received'));
+        $hep->sample_collection_time = Crypt::encryptString($request->input('sample_collection_time'));
+        $hep->date_reported = Crypt::encryptString($request->input('date_reported'));
+        $hep->ordering = Crypt::encryptString($request->input('ordering'));
+        $hep->referring = Crypt::encryptString($request->input('referring'));
+        $hep->patient_id = Crypt::encryptString($request->input('patient_id'));
+        $hep->result = Crypt::encryptString($request->input('result'));
+        $hep->reference = Crypt::encryptString($request->input('reference'));
+        $hep->interpretation = Crypt::encryptString($request->input('interpretation'));
+        $hep->patient_location = $request->input('patient_location');
+        $hep->document_number = TestHelper::IDGenerator(new HepBTest(), 'document_number', 6);
+
+        if ($hep->save())
+        {
+            Mail::to(Crypt::decryptString($hep->patient_email))->send(new MailHepBTest($hep));
+
+            return response()->json([
+                'message' => 'HepBTest Result successfully sent and mail delivered.'
             ], Response::HTTP_OK);
         }
     }
