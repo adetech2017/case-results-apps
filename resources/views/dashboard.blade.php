@@ -53,7 +53,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Delivered Email
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Email For Today
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">

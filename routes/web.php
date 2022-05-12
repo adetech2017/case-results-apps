@@ -35,7 +35,8 @@ Route::group(['middleware' => 'auth'], function()
             ->groupBy(DB::raw("Month(created_at)"))
             ->pluck('count');
 
-        $deliver_mail = DB::table('email_log')->select(DB::raw('*'))->get();
+        $deliver_mail = DB::table('email_log')->whereDate('date', Carbon::today())->get();
+        //$deliver_mail = DB::table('email_log')->select(DB::raw('*'))->get();
         $daily_result_pcr = TestResult::whereDate('created_at', Carbon::today())->get();
         $antigen_daily_result = AntigenTestResult::whereDate('created_at', Carbon::today())->get();
         $express_daily_result = TestResult::whereDate('created_at', Carbon::today())
