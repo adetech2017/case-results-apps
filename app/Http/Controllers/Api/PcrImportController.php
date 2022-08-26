@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Mail\AntigenImmediateMail;
 use App\Mail\HepBTest as MailHepBTest;
+use App\Models\Bitrix;
 use App\Models\HepBTest;
 
 class PcrImportController extends Controller
@@ -192,6 +193,58 @@ class PcrImportController extends Controller
 
             return response()->json([
                 'message' => 'HepBTest Result successfully sent and mail delivered.'
+            ], Response::HTTP_OK);
+        }
+    }
+
+    /**
+     * test for bitrix
+     */
+    public function addBitrix(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'surname' => 'required|string',
+            'email' => 'required|string|email|max:100',
+            'othername' => 'required|string',
+            'firstname' => 'required|string',
+            'title' => 'required|string',
+            'mobilePhone' => 'required|string',
+            'residence' => 'required|string'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 422);
+        }
+
+        $bitrix = new Bitrix();
+
+        $bitrix->surname = $request->input('surname');
+        $bitrix->othername = $request->input('othername');
+        $bitrix->firstname = $request->input('firstname');
+        $bitrix->title = $request->input('title');
+        $bitrix->CMStatus = $request->input('CMStatus');
+        $bitrix->dateofBirth = $request->input('dateofBirth');
+        $bitrix->gender = $request->input('gender');
+        $bitrix->mobilePhone = $request->input('mobilePhone');
+        $bitrix->email = $request->input('email');
+        $bitrix->residence = $request->input('residence');
+        $bitrix->country = $request->input('country');
+        $bitrix->state = $request->input('state');
+        $bitrix->motherName = $request->input('motherName');
+        $bitrix->nok = $request->input('nok');
+        $bitrix->nokPhone = $request->input('nokPhone');
+        $bitrix->nin = $request->input('nin');
+        $bitrix->chn = $request->input('chn');
+        $bitrix->lga = $request->input('lga');
+        $bitrix->bankName = $request->input('bankName');
+        $bitrix->bankAccount = $request->input('bankAccount');
+        $bitrix->BVN = $request->input('BVN');
+        $bitrix->Product = $request->input('Product');
+
+        if ($bitrix->save())
+        {
+            return response()->json([
+                'message' => 'BITRIX24 data added successfuly!'
             ], Response::HTTP_OK);
         }
     }

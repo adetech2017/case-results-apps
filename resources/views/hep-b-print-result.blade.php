@@ -351,10 +351,10 @@
                             <div class="middle-component">
                                 <div class="mid-comp-holder">
                                     <div class="header-text-row-1">
-                                        <p class="text-center mv-0 mb-0 h2">BIOLOGIX</p>
+                                        <p class="mb-0 text-center mv-0 h2">BIOLOGIX</p>
                                     </div>
                                     <div class="header-text-row-2">
-                                        <p class="text-center red mv-0 mb-0 h6" style="text-transform: uppercase;">
+                                        <p class="mb-0 text-center red mv-0 h6" style="text-transform: uppercase;">
                                             @if ($result->patient_location === "Lagos")
                                                 A MEMBER OF THE LAGOS COVID-19 LABORATORY CONSORTIUM<br />
                                             @endif
@@ -388,7 +388,7 @@
             </div>
         </header>
         <main>
-            <div class="data-component mt-3">
+            <div class="mt-3 data-component">
                 <div class="date-component">
                     <span class="date">
                         <span class="date-title h5"> Date: </span>
@@ -400,7 +400,7 @@
                     </span>
                 </div>
                 <div class="details-component">
-                    <div class="details-component-holder p-2 mt-1 gray-bg">
+                    <div class="p-2 mt-1 details-component-holder gray-bg">
                         <table style="width: 100%;">
                             <tbody>
                                 <tr>
@@ -409,23 +409,23 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <span class="h5 pt-0 mt-0">Patient Details</span>
+                                                        <span class="pt-0 mt-0 h5">Patient Details</span>
                                                     </td>
                                                     <tr>
                                                         <td colspan="2" class="pt-0 pb-2">
-                                                            <span class="h5 pr-1">Patient Name:</span>
-                                                            <span class="h5 pr-1 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">{{$result->patient_name}}</span>
+                                                            <span class="pr-1 h5">Patient Name:</span>
+                                                            <span class="pr-1 h5 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">{{$result->patient_name}}</span>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="pv-2">
-                                                            <span class="h5 pr-1">D.O.B(D/M/Y):</span>
+                                                            <span class="pr-1 h5">D.O.B(D/M/Y):</span>
                                                             <span class="mb-1 h5 no-bold">{{Crypt::decryptString($result->patient_dob)}}</span>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="pv-2">
-                                                            <span class="h5 pr-1">Age:</span>
+                                                            <span class="pr-1 h5">Age:</span>
                                                             <span class="mb-1 h5 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">
                                                                 {{Crypt::decryptString($result->patient_age)}}
                                                             </span>
@@ -433,7 +433,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="pv-2">
-                                                            <span class="h5 pr-1">Sex:</span>
+                                                            <span class="pr-1 h5">Sex:</span>
                                                             <span class="mb-1 h5 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">
                                                                 {{Crypt::decryptString($result->patient_sex)}}
                                                             </span>
@@ -449,36 +449,36 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <span class="h5 pt-0 mt-0">Specimen Details</span>
+                                                        <span class="pt-0 mt-0 h5">Specimen Details</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2" class="pt-0 pb-2">
-                                                        <span class="h5 pr-1">Date Collected:</span>
-                                                        <span class="h5 pr-1 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">{{Crypt::decryptString($result->sample_collection_date)}}</span>
+                                                        <span class="pr-1 h5">Date Collected:</span>
+                                                        <span class="pr-1 h5 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">{{Crypt::decryptString($result->sample_collection_date)}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="pv-2">
-                                                        <span class="h5 pr-1">Date Received:</span>
-                                                        <span class="h5 pr-1 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">{{Crypt::decryptString($result->date_received)}}</span>
+                                                        <span class="pr-1 h5">Date Received:</span>
+                                                        <span class="pr-1 h5 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">{{Crypt::decryptString($result->date_received)}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="pv-2">
-                                                        <span class="h5 pr-1">Time Collected:</span>
-                                                        <span class="h5 pr-1 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">{{Crypt::decryptString($result->sample_collection_time)}}</span>
+                                                        <span class="pr-1 h5">Time Collected:</span>
+                                                        <span class="pr-1 h5 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">{{Crypt::decryptString($result->sample_collection_time)}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="pv-2">
-                                                        <span class="h5 pr-1">Date Reported:</span>
-                                                        <span class="h5 pr-1 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">{{Crypt::decryptString($result->date_reported)}}</span>
+                                                        <span class="pr-1 h5">Date Reported:</span>
+                                                        <span class="pr-1 h5 no-bold" style="text-transform: uppercase; font-family: DejaVu Sans">{{Crypt::decryptString($result->date_reported)}}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="h5 mt-0">PCR SCREENING</span>
+                                                        <span class="mt-0 h5">PCR Quantitative Testing</span>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -490,29 +490,29 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <span class="h5 pt-0 mt-0">Physician/Lab Details</span>
+                                                        <span class="pt-0 mt-0 h5">Physician/Lab Details</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2" class="pt-0 pb-2">
-                                                        <span class="h5 pr-1">Ordering:</span>
-                                                        <span class="h5 pr-1 no-bold" style="font-family: DejaVu Sans">
+                                                        <span class="pr-1 h5">Ordering:</span>
+                                                        <span class="pr-1 h5 no-bold" style="font-family: DejaVu Sans">
                                                             {{Crypt::decryptString($result->ordering)}}
                                                         </span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="pv-2">
-                                                        <span class="h5 pr-1">Referring:</span>
-                                                        <span class="h5 pr-1 no-bold" style="font-family: DejaVu Sans">
+                                                        <span class="pr-1 h5">Referring:</span>
+                                                        <span class="pr-1 h5 no-bold" style="font-family: DejaVu Sans">
                                                             {{Crypt::decryptString($result->referring)}}
                                                         </span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="pv-2">
-                                                        <span class="h5 pr-1">ID:</span>
-                                                        <span class="h5 pr-1 no-bold" style="font-family: DejaVu Sans">
+                                                        <span class="pr-1 h5">ID:</span>
+                                                        <span class="pr-1 h5 no-bold" style="font-family: DejaVu Sans">
                                                             {{Crypt::decryptString($result->patient_id)}}
                                                         </span>
                                                     </td>
@@ -527,21 +527,32 @@
                 </div>
             </div>
 
-            <div class="test-result-component mt-5">
+            <div class="mt-5 test-result-component">
                 <span class="h5">RESULT:</span>
                 <div class="test-result">
                     <table class="table-l col-bordered light-gray-border">
                         <thead>
                             <tr>
-                                <td class="pl-1"><span class="h6 italic">TEST NAME</span></td>
-                                <td class="pl-1"><span class="h6 italic">RESULT</span></td>
-                                <td class="pl-1"><span class="h6 italic">REFERENCE UNIT</span></td>
+                                <td class="pl-1"><span class="italic h6">TEST NAME</span></td>
+                                <td class="pl-1"><span class="italic h6">RESULT</span></td>
+                                <td class="pl-1"><span class="italic h6">REFERENCE UNIT</span></td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="pl-1 pv-1"><span class="h6">Hepatitis B Virus DNA Screening</span></td>
-                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->result)}}</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">Hepatitis B Virus DNA Viral Load</span></td>
+                                <td class="pl-1 pv-1">
+                                    @if(Crypt::decryptString($result->result) <= 20)
+                                        <span class="text-black h6">
+                                            {{Crypt::decryptString($result->result)}}
+                                        </span>
+                                    @else
+                                        <span class="text-red-600 h6">
+                                            {{Crypt::decryptString($result->result)}}
+                                        </span>
+                                    @endif
+
+                                </td>
 
                                 <td class="pl-1 pv-1"><span class="h6">
                                     {{ Crypt::decryptString($result->reference) }}
@@ -552,15 +563,15 @@
                     </table>
                 </div>
             </div>
-            <p><span class="h5 pr-1">Result Interpretation:</span></p>
-            <p><span class="h5 pr-1">If target DNA is detected and above</span></p>
-            <div class="general-comment-component p-3 pb-5">
-                <div class="pb-3 pt-2">
 
+            {{-- <p><span class="pr-1 h5">If target DNA is detected and above</span></p> --}}
+            <div class="p-3 pb-5 general-comment-component">
+                <div class="pt-2 pb-3">
+                    <p><span class="pr-1 h5">Result Interpretation:</span></p>
                 </div>
             </div>
-            <div class="signatures-component pb-1">
-                <span class="h5 pr-1">Recommendation: </span> target DNA is detected and above the upper limit of detection, meet your doctor for treatment and follow up
+            <div class="pb-1 signatures-component">
+                {{-- <span class="pr-1 h5">Recommendation: </span> target DNA is detected and above the upper limit of detection, meet your doctor for treatment and follow up --}}
                 <table class="table-l">
                     <tbody>
                         <tr>
@@ -578,14 +589,14 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="pl-1">
-                                                <span class="h6 pr-1">Name:</span>
-                                                <span class="h6 pr-1 no-bold">DR. EMUEJEVOKE TOYE</span>
+                                                <span class="pr-1 h6">Name:</span>
+                                                <span class="pr-1 h6 no-bold">DR. EMUEJEVOKE TOYE</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="pl-1">
-                                                <span class="h6 pr-1">Designation:</span>
-                                                <span class="h6 pr-1 no-bold">Managing Director</span>
+                                                <span class="pr-1 h6">Designation:</span>
+                                                <span class="pr-1 h6 no-bold">Managing Director</span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -606,14 +617,14 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="pl-1">
-                                                <span class="h6 pr-1">Name:</span>
-                                                <span class="h6 pr-1 no-bold">GIFT ERUSE</span>
+                                                <span class="pr-1 h6">Name:</span>
+                                                <span class="pr-1 h6 no-bold">GIFT ERUSE</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="pl-1">
-                                                <span class="h6 pr-1">Designation:</span>
-                                                <span class="h6 pr-1 no-bold">Laboratory Manager</span>
+                                                <span class="pr-1 h6">Designation:</span>
+                                                <span class="pr-1 h6 no-bold">Laboratory Manager</span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -635,12 +646,12 @@
             </div>
         </main>
         <footer>
-            <div class="footer-content pv-3 text-center">
-                <p class="h6 mt-0 mb-0">
+            <div class="text-center footer-content pv-3">
+                <p class="mt-0 mb-0 h6">
                     <span class="pr-1">Address:</span>
                     <span class="h6">56C Olorunlogbon street, Anthony Village, Lagos, Nigeria</span>
                 </p>
-                <p class="mv-0 pt-1">
+                <p class="pt-1 mv-0">
                     <span class="pr-1">
                         <span class="pr-1 h6">Phone:</span>
                         <span class="h6"><a href="tel:08053072221">0805 3072 221</a></span>,

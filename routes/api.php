@@ -26,6 +26,8 @@ Route::middleware(['cors'])->group(function ()
     Route::post('add-new-result', [PcrImportController::class, 'new_results']);
     Route::post('add-new-antigen', [PcrImportController::class, 'new_atigen']);
     Route::post('create-hep-test', [PcrImportController::class, 'new_hpyer_b_test']);
+
+    Route::post('add-bitrix', [PcrImportController::class, 'addBitrix']);
 });
 
 

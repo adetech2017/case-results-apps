@@ -96,8 +96,6 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('print-antigen-result/{id}', [AntigenController::class, 'printAntigen']);
     Route::post('send-antigen-mail-result', [AntigenController::class, 'sendPatientMailAntigen']);
     Route::post('send-antigen-multiple', [AntigenController::class, 'send_multi_mail_antigen']);
-    Route::get('verify-antigen-result/{id}', [AntigenController::class, 'antigen_qrcode']);
-
 
 
     Route::get('file-import-export', [TestResultController::class, 'fileImportExport']);
@@ -125,7 +123,6 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('admin/submit-multi-zip', [TestResultController::class, 'submit_multi_zip'])->name('admin.multi.zip');
 
 
-    Route::get('verified-results/{document_number}', [TestResultController::class, 'single_test_result']);
     // Route::get('/dashboard', function () {
     //     return view('dashboard');
     // });
@@ -140,6 +137,12 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('send-multi-hep-mail', [HepBTestController::class, 'send_multi_hep_mail_result']);
 
 });
+
+//verification for pcr
+Route::get('verified-results/{document_number}', [TestResultController::class, 'single_test_result']);
+
+//verification for antigen
+Route::get('verify-antigen-result/{id}', [AntigenController::class, 'antigen_qrcode']);
 
 //test player upload
 Route::get('new-players', [PlayerController::class, 'newPlayer']);
