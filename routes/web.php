@@ -3,14 +3,19 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AntigenController;
 use App\Http\Controllers\HepBTestController;
+use App\Http\Controllers\HivTestController;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\PregenacyTestController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PSAController;
 use App\Http\Controllers\TestResultController;
+use App\Http\Controllers\UreaController;
 use App\Models\AntigenTestResult;
 use App\Models\MailLog;
 use App\Models\TestResult;
 use App\Models\User;
 use Carbon\Carbon;
+use Doctrine\DBAL\Schema\Index;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -136,6 +141,43 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('print-hep-result/{id}', [HepBTestController::class, 'printHepResult']);
     Route::post('send-multi-hep-mail', [HepBTestController::class, 'send_multi_hep_mail_result']);
 
+
+    // Routes for HIV screening
+    Route::get('hiv/create-new', [HivTestController::class, 'index']);
+    Route::post('import-hiv-test-screening', [HivTestController::class, 'store'])->name('import.hiv.tes.screening');
+    Route::get('hiv/hiv-results', [HivTestController::class, 'hiv_reults']);
+    Route::get('download-hiv-sample', [HivTestController::class, 'hiv_sample']);
+    Route::post('send-hiv-mail', [HivTestController::class, 'sendHivMail']);
+    Route::get('print-hiv-result/{id}', [HivTestController::class, 'printHivResult']);
+    Route::post('send-multi-hiv-mail', [HivTestController::class, 'send_multi_hiv_mail_result']);
+
+    // Routes for PT screening
+    Route::get('pregenacy/create-new', [PregenacyTestController::class, 'index']);
+    Route::post('import-pt-test-screening', [PregenacyTestController::class, 'store'])->name('import.pt.test.screening');
+    Route::get('pregenacy/pt-results', [PregenacyTestController::class, 'pt_reults']);
+    Route::get('download-pt-sample', [PregenacyTestController::class, 'pt_sample']);
+    Route::post('send-pt-mail', [PregenacyTestController::class, 'sendPTMail']);
+    Route::get('print-pt-result/{id}', [PregenacyTestController::class, 'printPTResult']);
+    Route::post('send-multi-pt-mail', [PregenacyTestController::class, 'send_multi_pt_mail_result']);
+
+    // Routes for urea screening
+    Route::get('urea/create-new', [UreaController::class, 'index']);
+    Route::post('import-urea-test', [UreaController::class, 'store'])->name('import.urea.test');
+    Route::get('urea/urea-results', [UreaController::class, 'urea_reults']);
+    Route::get('download-urea-sample', [UreaController::class, 'urea_sample']);
+    Route::post('send-urea-mail', [UreaController::class, 'sendUreaMail']);
+    Route::get('print-urea-result/{id}', [UreaController::class, 'printUreaResult']);
+    Route::post('send-multi-urea-mail', [UreaController::class, 'send_multi_urea_mail_result']);
+
+    // Routes for PSA screening
+    Route::get('psa/create-new', [PSAController::class, 'index']);
+    Route::post('import-psa-test', [PSAController::class, 'store'])->name('import.psa.test');
+    Route::get('psa/psa-results', [PSAController::class, 'psa_reults']);
+    Route::get('download-psa-sample', [PSAController::class, 'psa_sample']);
+    Route::post('send-psa-mail', [PSAController::class, 'sendPsaMail']);
+    Route::get('print-psa-result/{id}', [PSAController::class, 'printUreaResult']);
+    Route::post('send-multi-psa-mail', [PSAController::class, 'send_multi_psa_mail_result']);
+
 });
 
 //verification for pcr
@@ -147,6 +189,8 @@ Route::get('verify-antigen-result/{id}', [AntigenController::class, 'antigen_qrc
 //test player upload
 Route::get('new-players', [PlayerController::class, 'newPlayer']);
 Route::post('upload-players-details', [PlayerController::class, 'uploadContent'])->name('upload-players-details');
+
+
 
 
 Route::get('/debug-sentry', function () {

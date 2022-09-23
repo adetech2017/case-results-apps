@@ -47,11 +47,11 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-dna"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Biologix <sup>Lab</sup></div>
+                <div class="mx-3 sidebar-brand-text">Biologix <sup>Lab</sup></div>
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <hr class="my-0 sidebar-divider">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
@@ -77,7 +77,7 @@
                     <span>Cases</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="py-2 bg-white rounded collapse-inner">
                         <h6 class="collapse-header">Case Result:</h6>
                         <a class="collapse-item" href="{{ url('upload-new-case')}}">Upload Result</a>
                         <a class="collapse-item" href="{{ url('antigen/show-all-results')}}">Antigen Test Results</a>
@@ -94,10 +94,70 @@
                     <span>Hep-B Test</span>
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="py-2 bg-white rounded collapse-inner">
                         <h6 class="collapse-header">Hep-B Result:</h6>
                         <a class="collapse-item" href="{{ url('hep-b/create-new-hep-test')}}">Upload Result</a>
                         <a class="collapse-item" href="{{ url('hep-b/all-hep-results')}}">Hep-B Test Results</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>HIV Screening</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+                    <div class="py-2 bg-white rounded collapse-inner">
+                        <h6 class="collapse-header">HIV Result:</h6>
+                        <a class="collapse-item" href="{{ url('hiv/create-new')}}">Upload Result</a>
+                        <a class="collapse-item" href="{{ url('hiv/hiv-results')}}">HIV Test Results</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+                    aria-expanded="true" aria-controls="collapseFour">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>PT Screening</span>
+                </a>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
+                    <div class="py-2 bg-white rounded collapse-inner">
+                        <h6 class="collapse-header">HIV Result:</h6>
+                        <a class="collapse-item" href="{{ url('pregenacy/create-new')}}">Upload Result</a>
+                        <a class="collapse-item" href="{{ url('pregenacy/pt-results')}}">PT Test Results</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                    aria-expanded="true" aria-controls="collapseFive">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Urea Screening</span>
+                </a>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive">
+                    <div class="py-2 bg-white rounded collapse-inner">
+                        <h6 class="collapse-header">Urea Result:</h6>
+                        <a class="collapse-item" href="{{ url('urea/create-new')}}">Upload Result</a>
+                        <a class="collapse-item" href="{{ url('urea/urea-results')}}">Urea Test Results</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+                    aria-expanded="true" aria-controls="collapseSix">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>PSA Screening</span>
+                </a>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix">
+                    <div class="py-2 bg-white rounded collapse-inner">
+                        <h6 class="collapse-header">PSA Result:</h6>
+                        <a class="collapse-item" href="{{ url('psa/create-new')}}">Upload Result</a>
+                        <a class="collapse-item" href="{{ url('psa/psa-results')}}">PSA Test Results</a>
                     </div>
                 </div>
             </li>
@@ -112,7 +172,7 @@
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="py-2 bg-white rounded collapse-inner">
                         <h6 class="collapse-header">Users Managemnet:</h6>
                         <a class="collapse-item" href="{{ url('admin/create-new-user')}}">Add New</a>
                         <a class="collapse-item" href="{{ url('admin/show-all-users')}}">All Users</a>
@@ -136,7 +196,7 @@
                     <span>Logs History</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
+                    <div class="py-2 bg-white rounded collapse-inner">
                         <h6 class="collapse-header">Log Histrory:</h6>
                         <a class="collapse-item" href="{{ url('/admin/log-history')}}">All Logs</a>
                         <a class="collapse-item" href="{{ url('/admin/all-mail-logs')}}">Mail Logs</a>
@@ -166,7 +226,7 @@
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                <button class="border-0 rounded-circle" id="sidebarToggle"></button>
             </div>
         </ul>
         <!-- End of Sidebar -->
@@ -177,18 +237,18 @@
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="mb-4 bg-white shadow navbar navbar-expand navbar-light topbar static-top">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <button id="sidebarToggleTop" class="mr-3 btn btn-link d-md-none rounded-circle">
                         <i class="fa fa-bars"></i>
                     </button>
 
                     <!-- Topbar Search -->
                     <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        class="my-2 mr-auto d-none d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input type="text" class="border-0 form-control bg-light small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
@@ -199,7 +259,7 @@
                     </form>
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="ml-auto navbar-nav">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
@@ -208,11 +268,11 @@
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                            <div class="p-3 shadow dropdown-menu dropdown-menu-right animated--grow-in"
                                 aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
+                                <form class="mr-auto form-inline w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
+                                        <input type="text" class="border-0 form-control bg-light small"
                                             placeholder="Search for..." aria-label="Search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
@@ -233,23 +293,23 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                <span class="mr-2 text-gray-600 d-none d-lg-inline small">{{ Auth::user()->name }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{ url('profile/change-password')}}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-user fa-sm fa-fw"></i>
                                     Profile
                                 </a>
                                 {{--  <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-cogs fa-sm fa-fw"></i>
                                     Settings
                                 </a>  --}}
                                 <a class="dropdown-item" href="{{ url('profile/activity-logs')}}">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="mr-2 text-gray-400 fas fa-list fa-sm fa-fw"></i>
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
@@ -260,7 +320,7 @@
                                             class="dropdown-item"
                                                 onclick="event.preventDefault();
                                                             this.closest('form').submit();">
-                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            <i class="mr-2 text-gray-400 fas fa-sign-out-alt fa-sm fa-fw"></i>
                                             {{ __('Log Out') }}
                                         </x-responsive-nav-link>
                                     </form>
@@ -280,9 +340,9 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
+                    <div class="my-auto text-center copyright">
                         <span>Copyright &copy; Biologix-App 2022</span>
                     </div>
                 </div>
@@ -296,7 +356,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="rounded scroll-to-top" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
