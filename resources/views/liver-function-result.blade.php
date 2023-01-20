@@ -461,15 +461,7 @@
                 </table>
             </div>
             <h3 class="hiv-sc">
-                @if($result->test_type ==="PSA")
-                    <u>PSA -Prostate specific antigen, total - [Serum]</u>
-                @elseif($result->test_type ==="Urea")
-                    <u> Urea (Serum)</u>
-                @elseif($result->test_type ==="BloodSugar")
-                    <u>Blood Sugar Random/ Random Blood Sugar</u>
-                @elseif($result->test_type ==="Creatinine")
-                    <u>Creatinine - [Serum]</u>
-                @endif
+                <u>Lipid Profile =	Total cholesterol, HDL,LDL,VLDL, Triglycerides</u>
             </h3>
 
             <div class="mt-5 test-result-component">
@@ -485,43 +477,114 @@
                         </thead>
                         <tbody>
                             <tr>
-                                @if ($result->test_type ==="BloodSugar")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">mg/dl</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">80 - 140</span>
-                                    </td>
-                                @elseif($result->test_type ==="Creatinine")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{Crypt::decryptString($result->final_result)}}<span>
-
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">mg/dl</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">0.9 - 1.4</span>
-                                    </td>
-                                @elseif ($result->test_type ==="Urea" || $result->test_type ==="PSA")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">ng/ml</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">0 - 4</span>
-                                    </td>
-                                @endif
+                                <td class="pl-1 pv-1"><span class="h6">Bilirubin (Total) </span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->bilirubin_total)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mg/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0-1.3</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Bilirubin (Direct)</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->bilirubin_direct)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mg/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0 - 0.6</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Bilirubin (Indirect)</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->bilirubin_indirect)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mg/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0.1 - 1.1</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">SGOT (AST)</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->sgot_ast)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">U/L</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0.5 - 40</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">SGPT (ALT)</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->sgpt_alt)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">U/L</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">7 - 45</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Alkaline Phosphatase</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->alkaline_phosphatase)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">U/L</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">38-128</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">GGT</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->ggt_result)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">U/L</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">8 - 78</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Total Proteins</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->total_proteins)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">g/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">6.3 - 8.6</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Albumin</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->albumin)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">g/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">3.7 - 5.6</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Globulin</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->globulin)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">g/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">1.8 - 3.6</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">A/G Ratio</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->ag_ratio)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6"> </span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">1.1 - 2.2</span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -530,21 +593,11 @@
             <div style="text-align: center;">
                 <span class="h6">*****End of Report*****</span>
             </div>
-            @if ($result->test_type ==="BloodSugar")
-                <p class="mb-2" style="font-size: 15px">
-                    The reference values for a random glucose test in an average adult are 70 - 140 mg/dl. Random sugar levels between 140 - 200 mg/dl is considered pre-diabetes, and > 200 mg/dl is considered diabetes altough this must be confirmed with further tests and evaluation according to ADA guidelines. Please note that laboratory investigation results are to be used in conjunction with the clinical findings towards patient management.
-                </p>
-            @else
-                <p class="h6"><span class="italic">Note:</span> Determine kit used at the time of testing</p>
 
-                <p style="font-size: 15px"><span class="h5">General Comments & Additional Information:</span>
-                    <br>
-                    {{Crypt::decryptString($result->test_comments)}}
-                </p>
-                <p class="mb-2" style="font-size: 15px">
-                    A positive report is to be followed up with the confirmatory test and seeing a medical doctor.
-                </p>
-            @endif
+            <p class="mb-2" style="font-size: 15px">
+                Please note that laboratory investigation results are to be used in conjunction with the clinical findings towards patient management.
+            </p>
+
             <div class="pb-1 signatures-component">
                 <table class="table-l">
                     <tbody>

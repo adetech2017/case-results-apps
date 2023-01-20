@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Page Heading -->
-<h1 class="mb-4 text-gray-800 h3">Upload New HIV Test Results</h1>
+<h1 class="mb-4 text-gray-800 h3">Upload New Blood Sugar Results</h1>
 
 <div class="row">
 
@@ -11,7 +11,7 @@
         <!-- Circle Buttons -->
         <div class="mb-4 shadow card">
             <div class="py-3 card-header">
-                <h6 class="m-0 font-weight-bold text-primary">HIV Results Upload</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Blood Sugar Upload</h6>
             </div>
 
             @if (session()->has('status'))
@@ -37,11 +37,11 @@
             @endif
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="{{ route('import.hiv.test.screening') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('import.blood-sugar.test') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Upload HIV File</label>
+                        <label>Upload Blood Sugar File</label>
                         <input type="file" name="file" class="form-control">
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Sample data</h6>
             </div>
             <div class="card-body">
-                <a href="{{ url('download-hiv-sample')}}">Download HIV sample</a>
+                <a href="{{ url('download-blood-sugar-sample')}}">Download Blood Sugar sample</a>
             </div>
         </div>
     </div>

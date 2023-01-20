@@ -461,15 +461,7 @@
                 </table>
             </div>
             <h3 class="hiv-sc">
-                @if($result->test_type ==="PSA")
-                    <u>PSA -Prostate specific antigen, total - [Serum]</u>
-                @elseif($result->test_type ==="Urea")
-                    <u> Urea (Serum)</u>
-                @elseif($result->test_type ==="BloodSugar")
-                    <u>Blood Sugar Random/ Random Blood Sugar</u>
-                @elseif($result->test_type ==="Creatinine")
-                    <u>Creatinine - [Serum]</u>
-                @endif
+                <u>Electrolytes | Sodium, Potassium, Chloride [Serum]</u>
             </h3>
 
             <div class="mt-5 test-result-component">
@@ -485,43 +477,44 @@
                         </thead>
                         <tbody>
                             <tr>
-                                @if ($result->test_type ==="BloodSugar")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">mg/dl</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">80 - 140</span>
-                                    </td>
-                                @elseif($result->test_type ==="Creatinine")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{Crypt::decryptString($result->final_result)}}<span>
-
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">mg/dl</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">0.9 - 1.4</span>
-                                    </td>
-                                @elseif ($result->test_type ==="Urea" || $result->test_type ==="PSA")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">ng/ml</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">0 - 4</span>
-                                    </td>
-                                @endif
+                                <td class="pl-1 pv-1"><span class="h6">Chlorides [Serum]</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->chlorides_result)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mmol/L</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">96 - 109</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Sodium</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->sodium_result)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mmol/L</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">135 - 145</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Potassium</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->potassium_result)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mmol/L</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">3.5 - 5.5</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Bicarbonate</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->bicarbonate_result)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mmol/L</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">17 - 31</span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -530,21 +523,10 @@
             <div style="text-align: center;">
                 <span class="h6">*****End of Report*****</span>
             </div>
-            @if ($result->test_type ==="BloodSugar")
-                <p class="mb-2" style="font-size: 15px">
-                    The reference values for a random glucose test in an average adult are 70 - 140 mg/dl. Random sugar levels between 140 - 200 mg/dl is considered pre-diabetes, and > 200 mg/dl is considered diabetes altough this must be confirmed with further tests and evaluation according to ADA guidelines. Please note that laboratory investigation results are to be used in conjunction with the clinical findings towards patient management.
-                </p>
-            @else
-                <p class="h6"><span class="italic">Note:</span> Determine kit used at the time of testing</p>
+            <p class="mb-2" style="font-size: 15px">
+                Please note that laboratory investigation results are to be used in conjunction with the clinical findings towards patient management.
+            </p>
 
-                <p style="font-size: 15px"><span class="h5">General Comments & Additional Information:</span>
-                    <br>
-                    {{Crypt::decryptString($result->test_comments)}}
-                </p>
-                <p class="mb-2" style="font-size: 15px">
-                    A positive report is to be followed up with the confirmatory test and seeing a medical doctor.
-                </p>
-            @endif
             <div class="pb-1 signatures-component">
                 <table class="table-l">
                     <tbody>

@@ -461,14 +461,12 @@
                 </table>
             </div>
             <h3 class="hiv-sc">
-                @if($result->test_type ==="PSA")
-                    <u>PSA -Prostate specific antigen, total - [Serum]</u>
-                @elseif($result->test_type ==="Urea")
-                    <u> Urea (Serum)</u>
-                @elseif($result->test_type ==="BloodSugar")
-                    <u>Blood Sugar Random/ Random Blood Sugar</u>
-                @elseif($result->test_type ==="Creatinine")
-                    <u>Creatinine - [Serum]</u>
+                @if($result->test_type ==="BloodGroup")
+                    <u>Blood Group (ABO & Rh Typing) - [EDTA Blood]</u>
+                @elseif($result->test_type ==="Genotype")
+                    <u> GENOTYPE SCREENING (HMO)</u>
+                @elseif($result->test_type ==="Malaria")
+                    <u> Malaria Parasite Screening</u>
                 @endif
             </h3>
 
@@ -479,50 +477,59 @@
                             <tr>
                                 <td class="pl-1"><span class="h5">Parameter Name</span></td>
                                 <td class="pl-1"><span class="h5">Result Value</span></td>
-                                <td class="pl-1"><span class="h5">Unit</span></td>
-                                <td class="pl-1"><span class="h5">Reference Range</span></td>
+                                <td class="pl-1"><span class="h5">Normal Rage</span></td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                @if ($result->test_type ==="BloodSugar")
+                            @if($result->test_type ==="BloodGroup")
+                                <tr>
                                     <td class="pl-1 pv-1">
                                         <span class="h6">{{ $result->test_type}}</span>
                                     </td>
                                     <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">mg/dl</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">80 - 140</span>
-                                    </td>
-                                @elseif($result->test_type ==="Creatinine")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{Crypt::decryptString($result->final_result)}}<span>
-
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">mg/dl</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">0.9 - 1.4</span>
-                                    </td>
-                                @elseif ($result->test_type ==="Urea" || $result->test_type ==="PSA")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">ng/ml</span>
-                                    </td>
                                     <td class="pl-1 pv-1">
                                         <span class="h6">0 - 4</span>
                                     </td>
-                                @endif
-                            </tr>
+                                </tr>
+                                <tr>
+                                    <td class="pl-1 pv-1">
+                                        <span class="h6">Rh D- Type</span>
+                                    </td>
+                                    <td class="pl-1 pv-1"><span>positive</span></td>
+                                    <td class="pl-1 pv-1">
+                                        <span class="h6">0 - 4</span>
+                                    </td>
+                                </tr>
+                            @elseif($result->test_type ==="Genotype")
+                                <tr>
+                                    <td class="pl-1 pv-1">
+                                        <span class="h6">Genotype Screening</span>
+                                    </td>
+                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
+                                    <td class="pl-1 pv-1">
+                                        <span class="h6">0 - 4</span>
+                                    </td>
+                                </tr>
+                            @elseif ($result->test_type ==="Malaria")
+                                <tr>
+                                    <td class="pl-1 pv-1">
+                                        <span class="h6">Malarial Parasite (Thick and thin films)</span>
+                                    </td>
+                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->malarial_parasit)}}</span></td>
+                                    <td class="pl-1 pv-1">
+                                        <span class="h6"> </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-1 pv-1">
+                                        <span class="h6">Malarial antigen (Vivax and falciparum)</span>
+                                    </td>
+                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->malarial_antigen)}}</span></td>
+                                    <td class="pl-1 pv-1">
+                                        <span class="h6"> </span>
+                                    </td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -530,21 +537,17 @@
             <div style="text-align: center;">
                 <span class="h6">*****End of Report*****</span>
             </div>
-            @if ($result->test_type ==="BloodSugar")
-                <p class="mb-2" style="font-size: 15px">
-                    The reference values for a random glucose test in an average adult are 70 - 140 mg/dl. Random sugar levels between 140 - 200 mg/dl is considered pre-diabetes, and > 200 mg/dl is considered diabetes altough this must be confirmed with further tests and evaluation according to ADA guidelines. Please note that laboratory investigation results are to be used in conjunction with the clinical findings towards patient management.
-                </p>
-            @else
-                <p class="h6"><span class="italic">Note:</span> Determine kit used at the time of testing</p>
 
-                <p style="font-size: 15px"><span class="h5">General Comments & Additional Information:</span>
-                    <br>
-                    {{Crypt::decryptString($result->test_comments)}}
-                </p>
-                <p class="mb-2" style="font-size: 15px">
-                    A positive report is to be followed up with the confirmatory test and seeing a medical doctor.
-                </p>
-            @endif
+            <p class="h6"><span class="italic">Note:</span> Determine kit used at the time of testing</p>
+
+            <p style="font-size: 15px"><span class="h5">General Comments & Additional Information:</span>
+                <br>
+                {{Crypt::decryptString($result->test_comments)}}
+            </p>
+            <p class="mb-2" style="font-size: 15px">
+                A positive report is to be followed up with the confirmatory test and seeing a medical doctor.
+            </p>
+
             <div class="pb-1 signatures-component">
                 <table class="table-l">
                     <tbody>

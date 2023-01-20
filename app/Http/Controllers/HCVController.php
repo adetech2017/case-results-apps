@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\HivImport;
-use App\Mail\HivTest;
-use App\Models\HivScreening;
+use App\Imports\HCVImport;
+use App\Mail\HCVMail;
+use App\Models\HCV;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
@@ -12,22 +12,22 @@ use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\MailLog;
 
-class HivTestController extends Controller
+class HCVController extends Controller
 {
     /**
      * post hepB test results
      */
     public function index()
     {
-        return view('back-end.hiv-test-upload');
+        return view('back-end.blood-group-upload');
     }
 
     /**
-     * upload the HIV Test
+     * upload the hep-b-test
      */
     public function store(Request $request)
     {
-        Excel::import(new HivImport, $request->file('file')->store('temp'));
+        Excel::import(new HCVImport, $request->file('file')->store('temp'));
 
         return back()->with('status', 'File upload successfully!');
     }
@@ -35,35 +35,35 @@ class HivTestController extends Controller
     /**
      * list all hep-b test
      */
-    public function hiv_reults()
+    public function blood_group_reults()
     {
-        $data = HivScreening::orderBy('id', 'desc')->get();
+        $data = HCV::orderBy('id', 'desc')->get();
 
-        return view('back-end.hiv-test-results', ["data"=>$data]);
+        return view('back-end.blood-group-results', ["data"=>$data]);
     }
 
     /**
      * demo file download
      */
-    public function hiv_sample()
+    public function blood_group_sample()
     {
-        $file_path = public_path('sample/hiv_screening_data_sample.csv');
+        $file_path = public_path('sample/blood_group_demo.csv');
         return response()->download($file_path);
     }
 
     /**
      * Send result to mail
      */
-    public function sendHivMail(Request $request)
+    public function sendBloodGroupMail(Request $request)
     {
         $patient_id = $request->id;
-        $mailData = HivScreening::where('id', $patient_id)->firstOrFail();
+        $mailData = HCV::where('id', $patient_id)->firstOrFail();
 
         $findEmail = $mailData["patient_email"];
 
         $email = (Crypt::decryptString($findEmail));
 
-        Mail::to($email)->send(new HivTest($mailData));
+        Mail::to($email)->send(new HCVMail($mailData));
 
         if(Mail::failures())
         {
@@ -99,11 +99,11 @@ class HivTestController extends Controller
     /**
      * Print hep-b record
      */
-    public function printHivResult($id)
+    public function printBloodGroupResult($id)
     {
-        $result = HivScreening::where('id', $id)->first();
+        $result = HCV::where('id', $id)->first();
 
-        $pdf = PDF::loadView('hiv-screening-results', ["result"=> $result]);
+        $pdf = PDF::loadView('psa-urea-resultsheet', ["result"=> $result]);
 
         return $pdf->download($result->patient_name.'.pdf');
     }
@@ -111,16 +111,16 @@ class HivTestController extends Controller
     /**
      * send mail to multiple hep-b result to users
      */
-    public function send_multi_hiv_mail_result(Request $request)
+    public function send_multi_blood_group_mail_result(Request $request)
     {
-        $patients = HivScreening::whereIn('id', $request->ids)->get();
+        $patients = HCV::whereIn('id', $request->ids)->get();
 
         if($patients->count() > 0)
         {
 
             foreach($patients as $key => $mailData)
             {
-                Mail::to(Crypt::decryptString($mailData->patient_email))->send(new HivTest($mailData));
+                Mail::to(Crypt::decryptString($mailData->patient_email))->send(new HCVMail($mailData));
             }
         }
 

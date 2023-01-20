@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AntigenController;
+use App\Http\Controllers\BloodGroupController;
+use App\Http\Controllers\BloodSugarController;
+use App\Http\Controllers\CreatinineController;
 use App\Http\Controllers\HepBTestController;
 use App\Http\Controllers\HivTestController;
 use App\Http\Controllers\PlayerController;
@@ -144,7 +147,7 @@ Route::group(['middleware' => 'auth'], function()
 
     // Routes for HIV screening
     Route::get('hiv/create-new', [HivTestController::class, 'index']);
-    Route::post('import-hiv-test-screening', [HivTestController::class, 'store'])->name('import.hiv.tes.screening');
+    Route::post('import-hiv-test-screening', [HivTestController::class, 'store'])->name('import.hiv.test.screening');
     Route::get('hiv/hiv-results', [HivTestController::class, 'hiv_reults']);
     Route::get('download-hiv-sample', [HivTestController::class, 'hiv_sample']);
     Route::post('send-hiv-mail', [HivTestController::class, 'sendHivMail']);
@@ -177,6 +180,33 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('send-psa-mail', [PSAController::class, 'sendPsaMail']);
     Route::get('print-psa-result/{id}', [PSAController::class, 'printUreaResult']);
     Route::post('send-multi-psa-mail', [PSAController::class, 'send_multi_psa_mail_result']);
+
+    //creatinine test result routes
+    Route::get('creatinine/create-new', [CreatinineController::class, 'index']);
+    Route::post('import-creatinine-test', [CreatinineController::class, 'store'])->name('import.creatinine.test');
+    Route::get('creatinine/creatinine-results', [CreatinineController::class, 'creatinine_reults']);
+    Route::get('download-creatinine-sample', [CreatinineController::class, 'creatinine_sample']);
+    Route::post('send-creatinine-mail', [CreatinineController::class, 'sendCreatinineMail']);
+    Route::get('print-creatinine-result/{id}', [CreatinineController::class, 'printCreatinineResult']);
+    Route::post('send-multi-creatinine-mail', [CreatinineController::class, 'send_multi_creatinine_mail_result']);
+
+    //Blood sugar routes
+    Route::get('blood-sugar/create-new', [BloodSugarController::class, 'index']);
+    Route::post('import-blood-sugar-test', [BloodSugarController::class, 'store'])->name('import.blood-sugar.test');
+    Route::get('blood-sugar/blood-sugar-results', [BloodSugarController::class, 'blood_sugar_reults']);
+    Route::get('download-blood-sugar-sample', [BloodSugarController::class, 'blood_sugar_sample']);
+    Route::post('send-blood-sugar-mail', [BloodSugarController::class, 'sendBloodSugarMail']);
+    Route::get('print-blood-sugar-result/{id}', [BloodSugarController::class, 'printBloodSugarResult']);
+    Route::post('send-multi-blood-sugar-mail', [BloodSugarController::class, 'send_multi_blood_sugar_mail_result']);
+
+    //Blood group routes
+    Route::get('blood-group/create-new', [BloodGroupController::class, 'index']);
+    Route::post('import-blood-group-test', [BloodGroupController::class, 'store'])->name('import.blood-group.test');
+    Route::get('blood-group/blood-group-results', [BloodGroupController::class, 'blood_group_reults']);
+    Route::get('download-blood-group-sample', [BloodGroupController::class, 'blood_group_sample']);
+    Route::post('send-blood-group-mail', [BloodGroupController::class, 'sendBloodGroupMail']);
+    Route::get('print-blood-group-result/{id}', [BloodGroupController::class, 'printBloodGroupResult']);
+    Route::post('send-multi-blood-group-mail', [BloodGroupController::class, 'send_multi_blood_group_mail_result']);
 
 });
 

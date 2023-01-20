@@ -461,15 +461,7 @@
                 </table>
             </div>
             <h3 class="hiv-sc">
-                @if($result->test_type ==="PSA")
-                    <u>PSA -Prostate specific antigen, total - [Serum]</u>
-                @elseif($result->test_type ==="Urea")
-                    <u> Urea (Serum)</u>
-                @elseif($result->test_type ==="BloodSugar")
-                    <u>Blood Sugar Random/ Random Blood Sugar</u>
-                @elseif($result->test_type ==="Creatinine")
-                    <u>Creatinine - [Serum]</u>
-                @endif
+                <u>Lipid Profile =	Total cholesterol, HDL,LDL,VLDL, Triglycerides</u>
             </h3>
 
             <div class="mt-5 test-result-component">
@@ -485,43 +477,54 @@
                         </thead>
                         <tbody>
                             <tr>
-                                @if ($result->test_type ==="BloodSugar")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">mg/dl</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">80 - 140</span>
-                                    </td>
-                                @elseif($result->test_type ==="Creatinine")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{Crypt::decryptString($result->final_result)}}<span>
-
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">mg/dl</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">0.9 - 1.4</span>
-                                    </td>
-                                @elseif ($result->test_type ==="Urea" || $result->test_type ==="PSA")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">ng/ml</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">0 - 4</span>
-                                    </td>
-                                @endif
+                                <td class="pl-1 pv-1"><span class="h6">Total Cholesterol</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->total_cholesterol)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mg/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">130 - 230</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">HDL Cholesterol</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->hdl_cholesterol)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mg/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">30 - 70</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">LDL Cholestero</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->ldl_cholesterol)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mg/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">100 - 129</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Triglycerides</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->triglycerides)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mg/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">30 - 170</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">VLDL</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->vldl_result)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">mg/dl</span>
+                                </td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">7 - 40</span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -530,21 +533,14 @@
             <div style="text-align: center;">
                 <span class="h6">*****End of Report*****</span>
             </div>
-            @if ($result->test_type ==="BloodSugar")
-                <p class="mb-2" style="font-size: 15px">
-                    The reference values for a random glucose test in an average adult are 70 - 140 mg/dl. Random sugar levels between 140 - 200 mg/dl is considered pre-diabetes, and > 200 mg/dl is considered diabetes altough this must be confirmed with further tests and evaluation according to ADA guidelines. Please note that laboratory investigation results are to be used in conjunction with the clinical findings towards patient management.
-                </p>
-            @else
-                <p class="h6"><span class="italic">Note:</span> Determine kit used at the time of testing</p>
+            <p class="mb-2" style="font-size: 15px">
+                Results of the lipid profile are considered along with other risk factors of heart disease to develop a plan of treatment and follow-up.
+                High triglycerides can raise the risk of heart disease and is a major criteria in the diagnosis of metabolic syndrome.
+                Risk factors (in addition to a high LDL-Cholesterol) include: Cigarette smoking, Age (male 45 years or older or a female 55 years or older), Low HDL cholesterol (less than 40 mg/dL), Hypertension (Blood Pressure of 140/90 or higher or taking high blood pressure medications), Family history of premature heart disease (heart disease in a first degree male relative under age 55 or a first degree female relative under age 65), Diabetes.
+                High HDL (60 mg/dL or above) is considered a "negative risk factor" and its presence allows the removal of one risk factor.
+                High triglycerides are usually caused by other conditions, such as: Obesity, Poorly controlled diabetes, hypothyroidism, Kidney disease, alcoholism. Certain medicines may also raise triglycerides. These include: Tamoxifen, Steroids, Beta-blockers, Diuretics, Estrogen, Birth control pills.
+            </p>
 
-                <p style="font-size: 15px"><span class="h5">General Comments & Additional Information:</span>
-                    <br>
-                    {{Crypt::decryptString($result->test_comments)}}
-                </p>
-                <p class="mb-2" style="font-size: 15px">
-                    A positive report is to be followed up with the confirmatory test and seeing a medical doctor.
-                </p>
-            @endif
             <div class="pb-1 signatures-component">
                 <table class="table-l">
                     <tbody>

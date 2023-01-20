@@ -461,15 +461,7 @@
                 </table>
             </div>
             <h3 class="hiv-sc">
-                @if($result->test_type ==="PSA")
-                    <u>PSA -Prostate specific antigen, total - [Serum]</u>
-                @elseif($result->test_type ==="Urea")
-                    <u> Urea (Serum)</u>
-                @elseif($result->test_type ==="BloodSugar")
-                    <u>Blood Sugar Random/ Random Blood Sugar</u>
-                @elseif($result->test_type ==="Creatinine")
-                    <u>Creatinine - [Serum]</u>
-                @endif
+                <u>Widal test (Serum)</u>
             </h3>
 
             <div class="mt-5 test-result-component">
@@ -477,51 +469,74 @@
                     <table class="table-l col-bordered light-gray-border">
                         <thead>
                             <tr>
-                                <td class="pl-1"><span class="h5">Parameter Name</span></td>
+                                <td class="pl-1"><span class="h5">Parameter Name Unit</span></td>
                                 <td class="pl-1"><span class="h5">Result Value</span></td>
-                                <td class="pl-1"><span class="h5">Unit</span></td>
                                 <td class="pl-1"><span class="h5">Reference Range</span></td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                @if ($result->test_type ==="BloodSugar")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">mg/dl</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">80 - 140</span>
-                                    </td>
-                                @elseif($result->test_type ==="Creatinine")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{Crypt::decryptString($result->final_result)}}<span>
-
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">mg/dl</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">0.9 - 1.4</span>
-                                    </td>
-                                @elseif ($result->test_type ==="Urea" || $result->test_type ==="PSA")
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">{{ $result->test_type}}</span>
-                                    </td>
-                                    <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->final_result)}}</span></td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">ng/ml</span>
-                                    </td>
-                                    <td class="pl-1 pv-1">
-                                        <span class="h6">0 - 4</span>
-                                    </td>
-                                @endif
+                                <td class="pl-1 pv-1"><span class="h6">Salmonella paratyphi A (O) </span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->salmonella_paratyphi_a_o)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Salmonella paratyphi B (O)</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->salmonella_paratyphi_b_o)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Salmonella paratyphi C (O)</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->salmonella_paratyphi_c_o)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Salmonella paratyphi A (H)</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->salmonella_paratyphi_a_h)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Salmonella paratyphi B (H)</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->salmonella_paratyphi_b_h)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Salmonella paratyphi C (H)</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->salmonella_paratyphi_c_h)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Salmonella typhi H</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->salmonella_typhi_h)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Salmonella typhi O</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->salmonella_typhi_o)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-1 pv-1"><span class="h6">Result</span></td>
+                                <td class="pl-1 pv-1"><span class="h6">{{Crypt::decryptString($result->result)}}</span></td>
+                                <td class="pl-1 pv-1">
+                                    <span class="h6">0</span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -530,21 +545,11 @@
             <div style="text-align: center;">
                 <span class="h6">*****End of Report*****</span>
             </div>
-            @if ($result->test_type ==="BloodSugar")
-                <p class="mb-2" style="font-size: 15px">
-                    The reference values for a random glucose test in an average adult are 70 - 140 mg/dl. Random sugar levels between 140 - 200 mg/dl is considered pre-diabetes, and > 200 mg/dl is considered diabetes altough this must be confirmed with further tests and evaluation according to ADA guidelines. Please note that laboratory investigation results are to be used in conjunction with the clinical findings towards patient management.
-                </p>
-            @else
-                <p class="h6"><span class="italic">Note:</span> Determine kit used at the time of testing</p>
 
-                <p style="font-size: 15px"><span class="h5">General Comments & Additional Information:</span>
-                    <br>
-                    {{Crypt::decryptString($result->test_comments)}}
-                </p>
-                <p class="mb-2" style="font-size: 15px">
-                    A positive report is to be followed up with the confirmatory test and seeing a medical doctor.
-                </p>
-            @endif
+            <p class="h6"><span class="italic">SIGNIFICANT TITRE:</span>
+                Titre greater than 1:80 is considered significant and usually suggestive of infection, whereas low titres are often found in normal individuals.A single positive result has less significance than the rising titre thus it is advisable to have a repeat test done when a high titre is found to demonstrate a progressive increase in titres.
+            </p>
+
             <div class="pb-1 signatures-component">
                 <table class="table-l">
                     <tbody>

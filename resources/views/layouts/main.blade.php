@@ -162,6 +162,51 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
+                    aria-expanded="true" aria-controls="collapseSeven">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Creatine Screening</span>
+                </a>
+                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven">
+                    <div class="py-2 bg-white rounded collapse-inner">
+                        <h6 class="collapse-header">Creatine Result:</h6>
+                        <a class="collapse-item" href="{{ url('creatinine/create-new')}}">Upload Result</a>
+                        <a class="collapse-item" href="{{ url('creatinine/creatinine-results')}}">Creatine Test Results</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
+                    aria-expanded="true" aria-controls="collapseEight">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Blood Sugar Screening</span>
+                </a>
+                <div id="collapseEight" class="collapse" aria-labelledby="headingEight">
+                    <div class="py-2 bg-white rounded collapse-inner">
+                        <h6 class="collapse-header">Blood Sugar Result:</h6>
+                        <a class="collapse-item" href="{{ url('blood-sugar/create-new')}}">Upload Result</a>
+                        <a class="collapse-item" href="{{ url('blood-sugar/blood-sugar-results')}}">Blood Sugar Results</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
+                    aria-expanded="true" aria-controls="collapseEight">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Blood Group Screening</span>
+                </a>
+                <div id="collapseEight" class="collapse" aria-labelledby="headingEight">
+                    <div class="py-2 bg-white rounded collapse-inner">
+                        <h6 class="collapse-header">Blood Group Result:</h6>
+                        <a class="collapse-item" href="{{ url('blood-group/create-new')}}">Upload Result</a>
+                        <a class="collapse-item" href="{{ url('blood-group/blood-group-results')}}">Blood Group Results</a>
+                    </div>
+                </div>
+            </li>
+
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">

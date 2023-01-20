@@ -462,6 +462,8 @@
                     <u>HIV Screening</u>
                 @elseif($result->test_type ==="PT")
                     <u> Pregnancy Test</u>
+                @elseif($result->test_type ==="HCV")
+                    <u> HCV Screening</u>
                 @endif
             </h1>
 
