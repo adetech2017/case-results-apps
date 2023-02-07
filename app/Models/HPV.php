@@ -2,31 +2,38 @@
 
 namespace App\Models;
 
+use App\Casts\EncryptCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Electrolyte extends Model
+class HPV extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'patient_name',
+        'patient_dob',
         'patient_gender',
-        'patient_age',
         'patient_phone',
-        'patient_email',
+        'nationality',
         'lab_code',
         'collection_date',
-        'collection_time',
+        'patient_email',
         'result_date',
-        'chlorides_result',
-        'sodium_result',
-        'potassium_result',
-        'bicarbonate_result',
         'patient_location',
         'document_number',
+        'general_comment',
         'test_type',
-        'test_comments',
-        'calcium'
+    ];
+
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'sample_source' => 'array',
+        'cervix' => 'array',
     ];
 }

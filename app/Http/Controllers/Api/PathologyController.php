@@ -20,6 +20,7 @@ use App\Mail\MalariaMail;
 use App\Mail\PSAMail;
 use App\Mail\PTMail;
 use App\Mail\UreaMail;
+use App\Mail\WidalMail;
 use App\Models\BloodGroup;
 use App\Models\BloodSugar;
 use App\Models\Creatinine;
@@ -284,7 +285,7 @@ class PathologyController extends Controller
         $urea->patient_location = $request->input('patient_location');
         $urea->test_type = $testType;
         $urea->test_comments = Crypt::encryptString($request->input('test_comments'));
-        $urea->document_number = TestHelper::IDGenerator(new Urea(), 'document', 6);
+        $urea->document_number = TestHelper::IDGenerator(new Urea(), 'document_number', 6);
 
 
         if($urea->save())
@@ -441,7 +442,7 @@ class PathologyController extends Controller
         $hcv->patient_location = $request->input('patient_location');
         $hcv->test_type = $testType;
         $hcv->test_comments = Crypt::encryptString($request->input('test_comments'));
-        $hcv->document_number = TestHelper::IDGenerator(new HCV(), 'document', 6);
+        $hcv->document_number = TestHelper::IDGenerator(new HCV(), 'document_number', 6);
 
 
         if($hcv->save())
@@ -494,10 +495,13 @@ class PathologyController extends Controller
         $electrolyte->sodium_result = Crypt::encryptString($request->input('sodium_result'));
         $electrolyte->potassium_result = Crypt::encryptString($request->input('potassium_result'));
         $electrolyte->bicarbonate_result = Crypt::encryptString($request->input('bicarbonate_result'));
+        $electrolyte->calcium = Crypt::encryptString($request->input('calcium'));
         $electrolyte->patient_location = Crypt::encryptString($request->input('patient_location'));
         $electrolyte->test_type = $testType;
         $electrolyte->test_comments = Crypt::encryptString($request->input('test_comments'));
-        $electrolyte->document_number = TestHelper::IDGenerator(new Electrolyte(), 'document', 6);
+        $electrolyte->document_number = TestHelper::IDGenerator(new Electrolyte(), 'document_number', 6);
+
+        //dd($electrolyte);
 
 
         if($electrolyte->save())
@@ -552,11 +556,11 @@ class PathologyController extends Controller
         $lipid_profile->hdl_cholesterol = Crypt::encryptString($request->input('hdl_cholesterol'));
         $lipid_profile->ldl_cholesterol = Crypt::encryptString($request->input('ldl_cholesterol'));
         $lipid_profile->triglycerides = Crypt::encryptString($request->input('triglycerides'));
-        $lipid_profile->triggers = Crypt::encryptString($request->input('vldl_result'));
+        $lipid_profile->vldl_result = Crypt::encryptString($request->input('vldl_result'));
         $lipid_profile->patient_location = Crypt::encryptString($request->input('patient_location'));
         $lipid_profile->test_type = $testType;
         $lipid_profile->test_comments = Crypt::encryptString($request->input('test_comments'));
-        $lipid_profile->document_number = TestHelper::IDGenerator(new Electrolyte(), 'document', 6);
+        $lipid_profile->document_number = TestHelper::IDGenerator(new Electrolyte(), 'document_number', 6);
 
 
         if($lipid_profile->save())
@@ -619,7 +623,7 @@ class PathologyController extends Controller
         $liver_fun->patient_location = Crypt::encryptString($request->input('patient_location'));
         $liver_fun->test_type = $testType;
         $liver_fun->test_comments = Crypt::encryptString($request->input('test_comments'));
-        $liver_fun->document_number = TestHelper::IDGenerator(new Electrolyte(), 'document', 6);
+        $liver_fun->document_number = TestHelper::IDGenerator(new Electrolyte(), 'document_number', 6);
 
 
         if($liver_fun->save())
@@ -781,12 +785,12 @@ class PathologyController extends Controller
         $widal->patient_location = Crypt::encryptString($request->input('patient_location'));
         $widal->test_type = $testType;
         $widal->test_comments = Crypt::encryptString($request->input('test_comments'));
-        $widal->document_number = TestHelper::IDGenerator(new Widal(), 'document', 6);
+        $widal->document_number = TestHelper::IDGenerator(new Widal(), 'document_number', 6);
 
 
         if($widal->save())
         {
-            Mail::to(Crypt::decryptString($widal->patient_email))->send(new MalariaMail($widal));
+            Mail::to(Crypt::decryptString($widal->patient_email))->send(new WidalMail($widal));
 
             return response()->json([
                 'message' => 'Widal test successfully sent and mail delivered.'

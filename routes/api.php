@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\HPVController;
 use App\Http\Controllers\Api\PathologyController;
 use App\Http\Controllers\Api\PcrImportController;
 use Illuminate\Http\Request;
@@ -43,6 +44,7 @@ Route::middleware(['cors'])->group(function ()
     Route::post('create-genotype-test', [PathologyController::class, 'import_genotype']);
     Route::post('create-malaria-test', [PathologyController::class, 'import_malaria']);
     Route::post('create-widal-test', [PathologyController::class, 'import_widal']);
+    Route::post('create-hpv-test', [HPVController::class, 'import_hpv']);
 
 
 
